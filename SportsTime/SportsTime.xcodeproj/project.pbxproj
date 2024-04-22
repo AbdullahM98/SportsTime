@@ -143,6 +143,14 @@
 		763C48BF2BD68B70009B09EA /* SportsTime */ = {
 			isa = PBXGroup;
 			children = (
+				7FEEDF592BD6D68A00129F61 /* RemoteDataSource */,
+				7FEEDF582BD6D61F00129F61 /* LocalDataSource */,
+				7FEEDF572BD6D5F500129F61 /* TeamDetails */,
+				7FEEDF562BD6D54400129F61 /* LeaguesDetails */,
+				7FEEDF552BD6D52F00129F61 /* Leagues */,
+				7FEEDF542BD6D51100129F61 /* Favorite */,
+				7FEEDF532BD6D4F700129F61 /* Splash */,
+				7FEEDF522BD6D4CB00129F61 /* Home */,
 				76763A4E2BD6A2B000F2512D /* Models */,
 				763C48C02BD68B70009B09EA /* AppDelegate.swift */,
 				763C48C22BD68B70009B09EA /* SceneDelegate.swift */,
@@ -179,6 +187,142 @@
 				76763A4F2BD6A30800F2512D /* League.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7FEEDF522BD6D4CB00129F61 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7FEEDF632BD6D7D000129F61 /* View */,
+				7FEEDF622BD6D7C100129F61 /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7FEEDF532BD6D4F700129F61 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		7FEEDF542BD6D51100129F61 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				7FEEDF612BD6D7A400129F61 /* View */,
+				7FEEDF602BD6D79400129F61 /* ViewModel */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		7FEEDF552BD6D52F00129F61 /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				7FEEDF5E2BD6D75000129F61 /* View */,
+				7FEEDF5F2BD6D77900129F61 /* ViewModel */,
+			);
+			path = Leagues;
+			sourceTree = "<group>";
+		};
+		7FEEDF562BD6D54400129F61 /* LeaguesDetails */ = {
+			isa = PBXGroup;
+			children = (
+				7FEEDF5C2BD6D73200129F61 /* View */,
+				7FEEDF5D2BD6D73D00129F61 /* ViewModel */,
+			);
+			path = LeaguesDetails;
+			sourceTree = "<group>";
+		};
+		7FEEDF572BD6D5F500129F61 /* TeamDetails */ = {
+			isa = PBXGroup;
+			children = (
+				7FEEDF5A2BD6D6F500129F61 /* View */,
+				7FEEDF5B2BD6D70200129F61 /* ViewModel */,
+			);
+			path = TeamDetails;
+			sourceTree = "<group>";
+		};
+		7FEEDF582BD6D61F00129F61 /* LocalDataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalDataSource;
+			sourceTree = "<group>";
+		};
+		7FEEDF592BD6D68A00129F61 /* RemoteDataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RemoteDataSource;
+			sourceTree = "<group>";
+		};
+		7FEEDF5A2BD6D6F500129F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7FEEDF5B2BD6D70200129F61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FEEDF5C2BD6D73200129F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7FEEDF5D2BD6D73D00129F61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FEEDF5E2BD6D75000129F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7FEEDF5F2BD6D77900129F61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FEEDF602BD6D79400129F61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FEEDF612BD6D7A400129F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7FEEDF622BD6D7C100129F61 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FEEDF632BD6D7D000129F61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
