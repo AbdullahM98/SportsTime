@@ -4,3 +4,4 @@ ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SplashScreen/SplashScreen.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyOnboard/SwiftyOnboard.framework
+${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework

@@ -11,6 +11,9 @@ target 'SportsTime' do
   pod 'SDWebImage'
   pod 'SwiftyOnboard'
   pod 'SplashScreen'
+  pod 'lottie-ios'
+
+
 
   target 'SportsTimeTests' do
     inherit! :search_paths
