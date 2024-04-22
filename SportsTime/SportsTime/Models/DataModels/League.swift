@@ -7,13 +7,13 @@
 
 import UIKit
 
-class LeagueResponse : Codable {
+class LeagueResponse : Decodable {
     var success : Int?
     var result : Array<League>?
     
 }
 
-class League : Codable {
+class League : Decodable {
     
     var leagueKey :Int?
     var leagueName :String?
