@@ -52,9 +52,9 @@ class ApiServices  {
                     completion(.success(jsonData))
                     // Correctly print each League object's properties
                     if let leagues = jsonData.result {
-                        for league in leagues {
-                            print("League Key: \(league.leagueKey ?? 0), League Name: \(league.leagueName ?? ""), Country Key: \(league.countryKey ?? 0), Country Name: \(league.countryName ?? ""), League Image: \(league.leagueImg ?? ""), Country Image: \(league.countryImg ?? "")")
-                        }
+//                        for league in leagues {
+//                            print("League Key: \(league.leagueKey ?? 0), League Name: \(league.leagueName ?? ""), Country Key: \(league.countryKey ?? 0), Country Name: \(league.countryName ?? ""), League Image: \(league.leagueImg ?? ""), Country Image: \(league.countryImg ?? "")")
+//                        }
                     }
                 } catch {
                     print("Error decoding JSON: \(error.localizedDescription)")
