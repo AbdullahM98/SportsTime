@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7D69F398-A855-4A38-BC25-6ADC672E3EAF"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "074E9C3D-E2AE-4CA3-9F61-C22880044969"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "074E9C3D-E2AE-4CA3-9F61-C22880044969 - 136a616ba05eedc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SportsTime.ViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "105">
+               </Location>
+               <Location
+                  uuid = "074E9C3D-E2AE-4CA3-9F61-C22880044969 - ca7211be70efe5fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;SportsTime.League, Swift.Error&gt;) -&gt; () in SportsTime.ViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Models/Services/ApiServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "ApiServices"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1 - d8c8651e12002390"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SportsTime.ApiServices.fetchLeagues(completion: (Swift.Result&lt;SportsTime.LeagueResponse, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/Services/ApiServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1 - d8c8651e12002390"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SportsTime.ApiServices.fetchLeagues(completion: (Swift.Result&lt;SportsTime.LeagueResponse, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/Services/ApiServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
