@@ -186,10 +186,26 @@
 		76763A4E2BD6A2B000F2512D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				76763A4F2BD6A30800F2512D /* League.swift */,
-				7679D44C2BD6EE8200B96B3F /* ApiServices.swift */,
+				7679D44F2BD6EF9700B96B3F /* Services */,
+				7679D44E2BD6EF6C00B96B3F /* DataModels */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7679D44E2BD6EF6C00B96B3F /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				76763A4F2BD6A30800F2512D /* League.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		7679D44F2BD6EF9700B96B3F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7679D44C2BD6EE8200B96B3F /* ApiServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7FEEDF522BD6D4CB00129F61 /* Home */ = {
