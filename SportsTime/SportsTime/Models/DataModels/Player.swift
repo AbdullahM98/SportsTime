@@ -9,7 +9,7 @@ import UIKit
 
 class PlayerResponse: Codable {
     let success: Int
-    let result: [FootballPlayerResult]
+    let result: [Player]
 }
 
 // MARK: - Result
