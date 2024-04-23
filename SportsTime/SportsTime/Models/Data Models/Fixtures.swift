@@ -6,20 +6,7 @@
 //
 
 import UIKit
-
-class Fixtures: NSObject {
-    //
-    //  Fixtures.swift
-    //  SportsTime
-    //
-    //  Created by Abdullah Essam on 22/04/2024.
-    //
-
-    import UIKit
-
-    import Foundation
-
-    class Fixtures : Codable {
+class Fixtures : Codable {
         
         var success : Int?
         var result : [FixturesResults]?
@@ -57,4 +44,3 @@ class Fixtures: NSObject {
         
     }
 
-}
