@@ -52,53 +52,5 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SportsTime/Models/Services/ApiServices.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "ApiServices"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1 - d8c8651e12002390"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SportsTime.ApiServices.fetchLeagues(completion: (Swift.Result&lt;SportsTime.LeagueResponse, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SportsTime"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/Services/ApiServices.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "69">
-               </Location>
-               <Location
-                  uuid = "546526A4-59A4-426E-8CBF-72CC7C7C8CF1 - d8c8651e12002390"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SportsTime.ApiServices.fetchLeagues(completion: (Swift.Result&lt;SportsTime.LeagueResponse, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SportsTime"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/Services/ApiServices.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "140">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
