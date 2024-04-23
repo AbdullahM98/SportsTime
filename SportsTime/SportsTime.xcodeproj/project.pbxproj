@@ -10,6 +10,9 @@
 		3EDFA1C716F7D0B5A7C24056 /* Pods_SportsTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4526D299E2A6AE547AF90A /* Pods_SportsTime.framework */; };
 		6DA17633F108A44071806343 /* Pods_SportsTime_SportsTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6AF77A90B75D967CC04535 /* Pods_SportsTime_SportsTimeUITests.framework */; };
 		761CF2E72BD8371C007C69DE /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761CF2E62BD8371C007C69DE /* ApiServices.swift */; };
+		761CF2EA2BD838AD007C69DE /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761CF2E92BD838AD007C69DE /* Fixtures.swift */; };
+		761CF2EC2BD838E5007C69DE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761CF2EB2BD838E5007C69DE /* Player.swift */; };
+		761CF2EE2BD83909007C69DE /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761CF2ED2BD83909007C69DE /* Team.swift */; };
 		763C48C12BD68B70009B09EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763C48C02BD68B70009B09EA /* AppDelegate.swift */; };
 		763C48C32BD68B70009B09EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763C48C22BD68B70009B09EA /* SceneDelegate.swift */; };
 		763C48C52BD68B70009B09EA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763C48C42BD68B70009B09EA /* SplashViewController.swift */; };
@@ -48,6 +51,9 @@
 		4B4526D299E2A6AE547AF90A /* Pods_SportsTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA3CC2ABE4CFC8E132A88F3 /* Pods-SportsTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SportsTimeTests/Pods-SportsTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		761CF2E62BD8371C007C69DE /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
+		761CF2E92BD838AD007C69DE /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		761CF2EB2BD838E5007C69DE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		761CF2ED2BD83909007C69DE /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		763C48BD2BD68B70009B09EA /* SportsTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		763C48C02BD68B70009B09EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		763C48C22BD68B70009B09EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +130,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		761CF2E82BD83888007C69DE /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				761CF2E92BD838AD007C69DE /* Fixtures.swift */,
+				761CF2EB2BD838E5007C69DE /* Player.swift */,
+				761CF2ED2BD83909007C69DE /* Team.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 		763C48B42BD68B70009B09EA = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +206,7 @@
 		76763A4E2BD6A2B000F2512D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				761CF2E82BD83888007C69DE /* Data Models */,
 				761CF2E62BD8371C007C69DE /* ApiServices.swift */,
 			);
 			path = Models;
@@ -581,11 +598,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				761CF2EE2BD83909007C69DE /* Team.swift in Sources */,
 				761CF2E72BD8371C007C69DE /* ApiServices.swift in Sources */,
 				763C48C52BD68B70009B09EA /* SplashViewController.swift in Sources */,
 				763C48CB2BD68B70009B09EA /* SportsTime.xcdatamodeld in Sources */,
 				763C48C12BD68B70009B09EA /* AppDelegate.swift in Sources */,
+				761CF2EC2BD838E5007C69DE /* Player.swift in Sources */,
 				763C48C32BD68B70009B09EA /* SceneDelegate.swift in Sources */,
+				761CF2EA2BD838AD007C69DE /* Fixtures.swift in Sources */,
 				7FEB0CCF2BD6FB59004AC488 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
