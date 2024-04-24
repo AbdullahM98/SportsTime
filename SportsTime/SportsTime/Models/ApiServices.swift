@@ -15,6 +15,27 @@ class ApiServices  {
         
     }
     
+    func getLeaguesNetwork(compilation: @escaping (LeagueResponse?) -> Void) {
+        let url = URL(string: "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=2154818a4cbfc9dce69fab6771923c29e937839acc91aee84f9fa924bbbd4d6c")
+        
+        AF.request(url!, method: .get).responseJSON { response in
+            switch response.result {
+            case .success:
+                do {
+                    if let data = response.data {
+                        let result: LeagueResponse = try JSONDecoder().decode(LeagueResponse.self, from: data)
+                        print(result.result!.count)
+                        compilation(result)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+            }
+        }
+    }
 
     
     func fetchLeaguesResult(sport: String, compilitionHandler: @escaping (LeagueResponse?) -> Void) {
