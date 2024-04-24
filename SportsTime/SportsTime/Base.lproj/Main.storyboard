@@ -22,14 +22,49 @@
                     </view>
                     <navigationItem key="navigationItem" id="sXe-OY-EwT"/>
                     <connections>
-                        <segue destination="h1t-Ar-tj6" kind="show" identifier="goToHome" id="lKz-8P-Lvd"/>
+                        <segue destination="LMe-sf-1nt" kind="show" identifier="goToHome" id="yXk-vV-iDA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="976.33587786259534" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="459" y="4"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="scf-KG-z8F">
+            <objects>
+                <tabBarController id="LMe-sf-1nt" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="mJY-JU-YXG"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HFd-Hu-pgg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" red="0.1764705926" green="0.20000001789999999" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="h1t-Ar-tj6" kind="relationship" relationship="viewControllers" id="pS2-82-clJ"/>
+                        <segue destination="aeD-9a-zsP" kind="relationship" relationship="viewControllers" id="iyS-K7-vTS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6pP-Cx-1zT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1356" y="4"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="T7o-c6-78E">
+            <objects>
+                <viewController id="aeD-9a-zsP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RIW-Xa-TGw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="DCX-1b-g8G"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="heart.circle.fill" catalog="system" id="DoW-uw-3EE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltG-XN-Hb0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2363" y="265"/>
+        </scene>
+        <!--Sports-->
         <scene sceneID="jFk-oR-cnF">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="h1t-Ar-tj6" customClass="HomeViewController" customModule="SportsTime" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,11 +139,12 @@
                         <viewLayoutGuide key="safeArea" id="ef4-Ed-vwM"/>
                         <color key="backgroundColor" systemColor="tableBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Sports" image="soccerball.inverse" catalog="system" id="GCe-Hm-U7D"/>
                     <navigationItem key="navigationItem" id="QLO-Bw-T8J"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPq-eA-qd6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1776.3358778625955" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="2363" y="-375"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lEY-gR-LtL">
@@ -124,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3q1-xW-7Co" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3920" y="-22"/>
+            <point key="canvasLocation" x="4515" y="-61"/>
         </scene>
         <!--Leagues Table View Controller-->
         <scene sceneID="BhM-8T-KYa">
@@ -153,7 +189,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3R-AK-cWU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2621" y="-11"/>
+            <point key="canvasLocation" x="3534" y="-48"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ndv-9g-e5w">
@@ -171,10 +207,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpE-Hm-cYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49.618320610687022" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-575" y="4"/>
         </scene>
     </scenes>
     <resources>
+        <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <namedColor name="BlueColor">
             <color red="0.071000002324581146" green="0.1289999932050705" blue="0.36100000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -22,9 +22,12 @@ class ApiServices  {
             switch response.result {
             case .success:
                 do {
-                    if let data = response.data {
+                    if let data = response.data { //data that came from the server
+                        //decode the json into LeagueResponse obj
                         let result: LeagueResponse = try JSONDecoder().decode(LeagueResponse.self, from: data)
+                        
                         print(result.result!.count)
+                        //when i call the method this allow to receive and handle the response
                         compilation(result)
                     }
                 } catch {

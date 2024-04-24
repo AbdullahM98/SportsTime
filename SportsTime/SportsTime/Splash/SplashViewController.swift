@@ -21,6 +21,8 @@ class SplashViewController : UIViewController {
         //animationView!.loopMode = .loop
         view.addSubview(animationView!)
         animationView!.play()
+
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4){
             self.performSegue(withIdentifier: "goToHome", sender: nil)
         }
