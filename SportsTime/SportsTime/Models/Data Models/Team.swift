@@ -9,7 +9,7 @@ import UIKit
 
 class TeamResponse: Codable {
     var success: Int?
-    var result: [Team]
+    var result: [Team]?
 }
 
 struct Team: Codable {

@@ -9,7 +9,7 @@ import Foundation
 
 
 class LeaguePresenter {
-    var leagueProtocl : LeagueProtocol!
+    var leagueProtocl : LeagueProtocol! // view pr
     
 
     func attachView(view:LeagueProtocol)  {
@@ -18,7 +18,7 @@ class LeaguePresenter {
     }
     
     func getLeaguesNetwork(){
-        ApiServices.shared.getLeaguesNetwork{[weak self] leagueReslut in
+        ApiServices.shared.getLeaguesNetwork{ [weak self] leagueReslut in
             self?.leagueProtocl.updateLeagues(res: leagueReslut!)
             
             print(leagueReslut?.result![0].league_name)
