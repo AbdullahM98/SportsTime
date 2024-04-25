@@ -8,14 +8,14 @@
 import UIKit
 
 class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
-   
+    
     let names = ["Football","Tennis","Cricket","Basketball"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
- 
+    
     
     
     
@@ -35,16 +35,35 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
         return cell
     }
     
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let legues = storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as! LeaguesTableViewController
+        
+        switch(names[indexPath.row]){
+        case "Football":
+            legues.LeagueName = "Football"
+        case "Basketball":
+            legues.LeagueName = "Basketball"
+        case "Cricket":
+            legues.LeagueName = "Cricket"
+        case "Tennis":
+            legues.LeagueName = "Tennis"
+        default:
+            break
+        }
+        self.navigationController?.pushViewController(legues, animated: true)
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
+        
+    
 }

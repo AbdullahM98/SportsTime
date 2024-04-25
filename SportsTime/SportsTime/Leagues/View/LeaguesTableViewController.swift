@@ -6,27 +6,32 @@
 //
 
 import UIKit
-import Kingfisher
 import SDWebImage
 
-class LeaguesTableViewController: UITableViewController {
+protocol LeagueProtocol {
+    func updateLeagues(res:LeagueResponse)
+}
+
+class LeaguesTableViewController: UITableViewController,LeagueProtocol {
     var leaguesArray: [League] = []
+    var LeagueName : String = ""
+    let presenter = LeaguePresenter()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchLeagues()
+        presenter.attachView(view: self)
+        presenter.getLeaguesNetwork()
     }
-    func fetchLeagues() {
-        ApiServices.shared.getLeaguesNetwork { leagueResponse in
-            if let response = leagueResponse {
-                self.leaguesArray = response.result!
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                print("Failed to fetch leagues")
-            }
+    
+    func updateLeagues(res:LeagueResponse) {
+        self.leaguesArray = res.result!
+        DispatchQueue.main.async {
+            print("from updata")
+            print(self.leaguesArray.count)
+            self.tableView.reloadData()
         }
+        
     }
     
     // MARK: - Table view data source

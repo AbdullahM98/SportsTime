@@ -34,6 +34,7 @@ class ApiServices  {
                     print(error.localizedDescription)
                 }
             case .failure(let error):
+                compilation(nil)
                 print(error.localizedDescription)
                 
             }
