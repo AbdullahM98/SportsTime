@@ -19,9 +19,12 @@ class LeaguePresenter {
     
     func getLeaguesNetwork(){
         ApiServices.shared.getLeaguesNetwork{ [weak self] leagueReslut in
-            self?.leagueProtocl.updateLeagues(res: leagueReslut!)
+            if let leagues = leagueReslut{
+                self?.leagueProtocl.updateLeagues(res: leagues)
+                
+                print(leagueReslut?.result![0].league_name)
+            }
             
-            print(leagueReslut?.result![0].league_name)
         }
     }
 }

@@ -16,19 +16,22 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
     var leaguesArray: [League] = []
     var LeagueName : String = ""
     let presenter = LeaguePresenter()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
+        print("LeagueName",LeagueName)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+
+    }
     func updateLeagues(res:LeagueResponse) {
         self.leaguesArray = res.result!
         DispatchQueue.main.async {
-            print("from updata")
-            print(self.leaguesArray.count)
+            print("from updata",self.leaguesArray.count)
             self.tableView.reloadData()
         }
         
@@ -59,6 +62,20 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let leagueId = leaguesArray[indexPath.section].league_key
+        let leagueName = leaguesArray[indexPath.section].league_name
+        let selectedLeague = leaguesArray[indexPath.section]
+        if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
+            DetailsViewController.selctedLeague = selectedLeague
+            DetailsViewController.leagueId = leagueId
+            
+            navigationController?.pushViewController(DetailsViewController, animated: true)
+        }
+        
     }
     
     /*
@@ -96,14 +113,5 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
      }
      */
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+   
 }

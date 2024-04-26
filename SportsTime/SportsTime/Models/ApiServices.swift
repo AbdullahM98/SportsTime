@@ -41,19 +41,14 @@ class ApiServices  {
         }
     }
     
-    func getLeaguesNetwork(compilation: @escaping (LeagueResponse?) -> Void) {
-        let url = URL(string: "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=2154818a4cbfc9dce69fab6771923c29e937839acc91aee84f9fa924bbbd4d6c")
-        
-        AF.request(url!, method: .get).responseJSON { response in
+    func getLeagueDetails(url:String,leagueId:Int, compilation: @escaping (FixturesResponse?) -> Void) {
+        AF.request(url, method: .get).responseJSON { response in
             switch response.result {
             case .success:
                 do {
-                    if let data = response.data { //data that came from the server
-                        //decode the json into LeagueResponse obj
-                        let result: LeagueResponse = try JSONDecoder().decode(LeagueResponse.self, from: data)
-                        
-                        print(result.result!.count)
-                        //when i call the method this allow to receive and handle the response
+                    if let data = response.data {
+                        let result: FixturesResponse = try JSONDecoder().decode(FixturesResponse.self, from: data)
+                       // print("today matches ",result.result!.count)
                         compilation(result)
                     }
                 } catch {

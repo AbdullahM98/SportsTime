@@ -6,14 +6,13 @@
 //
 
 import UIKit
-class Fixtures : Codable {
-        
+class FixturesResponse : Codable {
         var success : Int?
-        var result : [FixturesResults]?
+        var result : [Fixtures]?
         
     }
 
-    class FixturesResults : Codable{
+    class Fixtures : Codable{
         var event_date : String?
         var event_time : String?
         var event_away_team : String?

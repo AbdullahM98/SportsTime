@@ -28,7 +28,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCustomCell", for: indexPath) as! HomeCollectionCustomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCustomCell", for: indexPath) as! HomeCollectionCustomCell
         cell.sportImg.image = UIImage(named: names[indexPath.row])
         cell.titleText.text = names[indexPath.row]
         
