@@ -7,14 +7,24 @@
 
 import UIKit
 
-class TeamResponse: Codable {
-    var success: Int?
-    var result: [Team]?
+
+struct TeamResponse: Decodable {
+    let success: Int
+    let result: [Team]?
 }
 
-struct Team: Codable {
-    var team_key: Int?
-    var team_name: String?
-    var team_logo: String?
-    var players: [Player]?
+// MARK: - Result
+struct Team: Decodable {
+    let teamKey: Int?
+    let teamName: String?
+    let teamLogo: String?
+    let players: [Player]?
+    let coaches: [Coach]?
+
+    enum CodingKeys: String, CodingKey {
+        case teamKey = "team_key"
+        case teamName = "team_name"
+        case teamLogo = "team_logo"
+        case players, coaches
+    }
 }

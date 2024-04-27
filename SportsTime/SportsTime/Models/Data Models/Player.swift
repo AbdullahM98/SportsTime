@@ -11,25 +11,27 @@ import UIKit
 
 class PlayerResponse: Codable {
     let success: Int
-    let result: [Player]
+    let result: [Player]?
 }
+// MARK: - Coach
+
 
 // MARK: - Result
 class Player: Codable {
-    let playerKey: Int
-    let playerName, playerNumber: String
-    let playerType, playerAge, playerMatchPlayed, playerGoals: String
-    let playerYellowCards, playerRedCards, playerMinutes, playerInjured: String
-    let playerSubstituteOut, playerSubstitutesOnBench, playerAssists, playerIsCaptain: String
-    let playerShotsTotal, playerGoalsConceded, playerFoulsCommited, playerTackles: String
-    let playerBlocks, playerCrossesTotal, playerInterceptions, playerClearances: String
-    let playerDispossesed, playerSaves, playerInsideBoxSaves, playerDuelsTotal: String
-    let playerDuelsWon, playerDribbleAttempts, playerDribbleSucc, playerPenComm: String
-    let playerPenWon, playerPenScored, playerPenMissed, playerPasses: String
-    let playerPassesAccuracy, playerKeyPasses, playerWoordworks, playerRating: String
-    let teamName: String
-    let teamKey: Int
-    let playerImage: String
+    let playerKey: Int?
+    let playerName, playerNumber: String?
+    let playerType, playerAge, playerMatchPlayed, playerGoals: String?
+    let playerYellowCards, playerRedCards, playerInjured: String?
+    let playerSubstituteOut, playerSubstitutesOnBench, playerAssists, playerIsCaptain: String?
+    let playerShotsTotal, playerGoalsConceded, playerFoulsCommited, playerTackles: String?
+    let playerBlocks, playerCrossesTotal, playerInterceptions, playerClearances: String?
+    let playerDispossesed, playerSaves, playerInsideBoxSaves, playerDuelsTotal: String?
+    let playerDuelsWon, playerDribbleAttempts, playerDribbleSucc, playerPenComm: String?
+    let playerPenWon, playerPenScored, playerPenMissed, playerPasses: String?
+    let playerPassesAccuracy, playerKeyPasses, playerWoordworks, playerRating: String?
+    let teamName: String?
+    let teamKey: Int?
+    let playerImage: String?
 
     enum CodingKeys: String, CodingKey {
         case playerKey = "player_key"
@@ -41,7 +43,7 @@ class Player: Codable {
         case playerGoals = "player_goals"
         case playerYellowCards = "player_yellow_cards"
         case playerRedCards = "player_red_cards"
-        case playerMinutes = "player_minutes"
+        
         case playerInjured = "player_injured"
         case playerSubstituteOut = "player_substitute_out"
         case playerSubstitutesOnBench = "player_substitutes_on_bench"
@@ -74,5 +76,15 @@ class Player: Codable {
         case teamName = "team_name"
         case teamKey = "team_key"
         case playerImage = "player_image"
+    }
+}
+struct Coach: Decodable {
+    let coachName: String?
+    let coachCountry, coachAge: String?
+
+    enum CodingKeys: String, CodingKey {
+        case coachName = "coach_name"
+        case coachCountry = "coach_country"
+        case coachAge = "coach_age"
     }
 }

@@ -43,4 +43,17 @@ class DetailsPresenter{
             }
         })
     }
+    
+    func getTeamsLeague(leagueId:String ,met :String , sport:String){
+        print("here teams league")
+        ApiServices.shared.getTeams(sport: sport, met: met, leagueId: leagueId, compelition: {
+            [weak self] result in
+            if let res = result{
+                self!.detailsProtocol.updateTeams(teams: res)
+                print("updadte teams",result?.result?.count)
+            }
+            
+        })
+    
+    }
 }
