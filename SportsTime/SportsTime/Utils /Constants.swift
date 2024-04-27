@@ -11,8 +11,20 @@ class Constants {
     
     static let Base_Url = "https://apiv2.allsportsapi.com/"
     static let Api_key = "2154818a4cbfc9dce69fab6771923c29e937839acc91aee84f9fa924bbbd4d6c"
+    static let fixtures =  "Fixtures"
+    static let leagues =  "Leagues"
+    static let teams =  "Teams"
     
 }
+enum Sports:String {
+    case football = "football"
+    case tennis = "tennis"
+    case basketball = "basketball"
+    case cricket = "cricket"
+    
+    
+}
+
 
 
 

@@ -15,8 +15,8 @@ class ApiServices  {
         
     }
     
-    func getLeaguesNetwork(compilation: @escaping (LeagueResponse?) -> Void) {
-        let url = URL(string: "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=2154818a4cbfc9dce69fab6771923c29e937839acc91aee84f9fa924bbbd4d6c")
+    func getLeaguesNetwork(sport :String,met:String,compilation: @escaping (LeagueResponse?) -> Void) {
+        let url = URL(string: "\(Constants.Base_Url)\(sport)/?met=\(met)&APIkey=\(Constants.Api_key)")
         
         AF.request(url!, method: .get).responseJSON { response in
             switch response.result {
@@ -41,7 +41,9 @@ class ApiServices  {
         }
     }
     
-    func getLeagueDetails(url:String,leagueId:Int, compilation: @escaping (FixturesResponse?) -> Void) {
+    func getLeagueDetails(sport:String,met:String,leagueId:Int,from:String , to:String, compilation: @escaping (FixturesResponse?) -> Void) {
+        let url = "\(Constants.Base_Url)\(sport)/?met=\(met)&APIkey=\(Constants.Api_key)&from=\(from)&to=\(to)&leagueId=\(leagueId)"
+        
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {
             case .success:

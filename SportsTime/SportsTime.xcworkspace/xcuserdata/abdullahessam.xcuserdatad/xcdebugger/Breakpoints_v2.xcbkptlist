@@ -110,8 +110,8 @@
             filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getTeamsLeague(leagueId:met:sport:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "SportsTime/Models/ApiServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "getTeams(sport:met:leagueId:compelition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "getTeamsLeague(leagueId:met:sport:)"
             landmarkType = "7">
             <Locations>
@@ -190,8 +190,8 @@
             filePath = "SportsTime/Models/ApiServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "getTeams(sport:met:leagueId:compelition:)"
             landmarkType = "7">
          </BreakpointContent>
