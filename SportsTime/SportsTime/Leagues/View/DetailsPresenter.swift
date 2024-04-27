@@ -19,7 +19,7 @@ class DetailsPresenter{
     func getUpComingEvents(leagueId:Int){
         let leagueIdString = String(leagueId)
         
-        ApiServices.shared.getLeagueDetails(sport: Sports.football.rawValue, met: Constants.fixtures,leagueId:leagueId,from:DateFormat.getDate().today,to:DateFormat.getDate().tomorrow,compilation:{ [weak self] result in
+        ApiServices.shared.getLeagueDetails(sport: Constants.currSport, met: Constants.fixtures,leagueId:leagueId,from:DateFormat.getDate().today,to:DateFormat.getDate().tomorrow,compilation:{ [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateUpComing(fixtures: res)
                 print("getUpComingEvents",result?.result?.count as Any)
@@ -30,7 +30,7 @@ class DetailsPresenter{
     func getLatestEvents(leagueId:Int){
         let leagueIdString = String(leagueId)
         
-        ApiServices.shared.getLeagueDetails(sport:Sports.football.rawValue,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().yesterday,compilation:{
+        ApiServices.shared.getLeagueDetails(sport:Constants.currSport,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().yesterday,compilation:{
             [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateLatest(fixtures: res)
@@ -41,7 +41,7 @@ class DetailsPresenter{
     
     func getTeamsLeague(leagueId:String ,met :String , sport:String){
         print("here teams league")
-        ApiServices.shared.getTeams(sport: sport, met: met, leagueId: leagueId, compelition: {
+        ApiServices.shared.getTeams(sport: Constants.currSport, met: met, leagueId: leagueId, compelition: {
             [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateTeams(teams: res)

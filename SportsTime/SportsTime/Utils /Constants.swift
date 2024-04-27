@@ -14,6 +14,7 @@ class Constants {
     static let fixtures =  "Fixtures"
     static let leagues =  "Leagues"
     static let teams =  "Teams"
+    static var currSport = ""
     
 }
 enum Sports:String {
