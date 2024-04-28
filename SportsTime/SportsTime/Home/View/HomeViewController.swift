@@ -42,16 +42,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
         
         switch(names[indexPath.row]){
         case "Football":
-            legues.LeagueName = "Football"
+            legues.sportsType = "football"
             Constants.currSport = Sports.football.rawValue
         case "Basketball":
-            legues.LeagueName = "Basketball"
+            legues.sportsType = "basketball"
             Constants.currSport = Sports.basketball.rawValue
         case "Cricket":
-            legues.LeagueName = "Cricket"
+            legues.sportsType = "cricket"
             Constants.currSport = Sports.cricket.rawValue
         case "Tennis":
-            legues.LeagueName = "Tennis"
+            legues.sportsType = "tennis"
             Constants.currSport = Sports.tennis.rawValue
         default:
             break

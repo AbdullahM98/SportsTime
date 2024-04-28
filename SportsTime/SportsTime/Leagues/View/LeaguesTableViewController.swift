@@ -14,7 +14,7 @@ protocol LeagueProtocol {
 
 class LeaguesTableViewController: UITableViewController,LeagueProtocol {
     var leaguesArray: [League] = []
-    var LeagueName : String = ""
+    var sportsType : String = ""
     let presenter = LeaguePresenter()
     
     
@@ -22,7 +22,7 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         super.viewDidLoad()
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
-        print("LeagueName",LeagueName)
+        print("LeagueName ",sportsType)
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -68,11 +68,13 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         
         let leagueId = leaguesArray[indexPath.section].league_key
         let leagueName = leaguesArray[indexPath.section].league_name
+        let leagueeType = sportsType
         let selectedLeague = leaguesArray[indexPath.section]
         if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
             DetailsViewController.selctedLeague = selectedLeague
             DetailsViewController.leagueId = leagueId
-            
+            DetailsViewController.sportsType = sportsType
+
             navigationController?.pushViewController(DetailsViewController, animated: true)
         }
         

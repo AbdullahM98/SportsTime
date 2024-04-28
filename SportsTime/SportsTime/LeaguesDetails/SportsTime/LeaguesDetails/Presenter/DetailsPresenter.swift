@@ -16,10 +16,10 @@ class DetailsPresenter{
     }
     
     
-    func getUpComingEvents(leagueId:Int){
+    func getUpComingEvents(leagueId:Int, sport:String){
         let leagueIdString = String(leagueId)
         
-        ApiServices.shared.getLeagueDetails(sport: Constants.currSport, met: Constants.fixtures,leagueId:leagueId,from:DateFormat.getDate().today,to:DateFormat.getDate().tomorrow,compilation:{ [weak self] result in
+        ApiServices.shared.getLeagueDetails(sport: sport, met: Constants.fixtures,leagueId:leagueId,from:DateFormat.getDate().today,to:DateFormat.getDate().tomorrow,compilation:{ [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateUpComing(fixtures: res)
                 print("getUpComingEvents",result?.result?.count as Any)
@@ -50,5 +50,9 @@ class DetailsPresenter{
             
         })
     
+    }
+    
+    func insertLeague(league:League,leagueType:String) {
+        DataBaseManger.insertLeagueToFavorite(league:league,leagueType:leagueType)
     }
 }

@@ -11,7 +11,7 @@ import Kingfisher
 protocol LeagueDetailsProtocol{
     func updateUpComing(fixtures:FixturesResponse)
     func updateLatest(fixtures:FixturesResponse)
-    func updateTeams(teams:TeamResponse) 
+    func updateTeams(teams:TeamResponse)
 }
 
 
@@ -19,6 +19,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     let presenter = DetailsPresenter()
     var selctedLeague : League?
     var leagueId :Int!
+    var sportsType : String = ""
     var UpComingArray : [Fixtures] = []
     var LatestEventsArray : [Fixtures] = []
     var teamsArray : [Team] = []
@@ -57,9 +58,10 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("from details",sportsType)
         if let leagueId = leagueId {
             presenter.attachView(view: self)
-            presenter.getUpComingEvents(leagueId:leagueId)
+            presenter.getUpComingEvents(leagueId:leagueId, sport:sportsType)
             presenter.getLatestEvents(leagueId:leagueId)
             presenter.getTeamsLeague(leagueId: String(leagueId), met: "Teams", sport: "football")
             
@@ -84,7 +86,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     override func viewWillAppear(_ animated: Bool){
         collectionView.reloadData()
     }
- 
+    
     
     func latestEvents() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
@@ -150,26 +152,26 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         
         //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
-                                               
+        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
-
+        
+        
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
-                                               
+        
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         
-    //    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
-//
-//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(10))
-//        let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-//                                               
-//        section.boundarySupplementaryItems = [headerSupplementary]
-                                        
-            //return
-            return section
-
+        //    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
+        //
+        //        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(10))
+        //        let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        //
+        //        section.boundarySupplementaryItems = [headerSupplementary]
+        
+        //return
+        return section
+        
         
         
         
@@ -203,24 +205,24 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             var currTeam = teamsArray[indexPath.row]
             if let TeamsTableViewController = storyboard?.instantiateViewController(withIdentifier: "TeamsTableViewController") as? TeamsTableViewController {
                 TeamsTableViewController.team = currTeam
-               
+                
                 
                 navigationController?.pushViewController(TeamsTableViewController, animated: true)
             }
         }
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let upcomingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "upComingCell", for: indexPath) as! UpComingCollectionViewCell
         
         let latesstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as! LatestCollectionViewCell
         
         let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamsCollectionCell", for: indexPath) as!TeasmCollectionViewCell
+        
         switch (indexPath.section) {
         case 0:
-           
-            
             upcomingCell.homeLabel.text = UpComingArray[indexPath.row].event_home_team
-            
+            upcomingCell.backgroundImageView.image = UIImage(named: "backgroundImage")
             KF.url(URL(string: UpComingArray[indexPath.row].home_team_logo ?? ""))
                 .placeholder(UIImage(named: "lg.png"))
                 .set(to: upcomingCell.homeImage)
@@ -233,12 +235,10 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             upcomingCell.dateLabel.text = UpComingArray[indexPath.row].event_date
             upcomingCell.hourLabel.text = UpComingArray[indexPath.row].event_time
             
-           
+            
         case 1 :
-         
-            
+
             latesstCell.homeName.text = LatestEventsArray[indexPath.row].event_home_team
-            
             KF.url(URL(string: LatestEventsArray[indexPath.row].home_team_logo ?? ""))
                 .placeholder(UIImage(named: "lg.png"))
                 .set(to: latesstCell.homeImage)
@@ -253,13 +253,13 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             latesstCell.score.text = LatestEventsArray[indexPath.row].event_final_result
             
         case 2:
-        
+            
             KF.url(URL(string: teamsArray[indexPath.row].teamLogo ?? ""))
                 .placeholder(UIImage(named: "lg.png"))
                 .set(to: teamCell.teamImgView)
         default :
             latesstCell
-           
+            
         }
         switch indexPath.section{
         case 0:
@@ -272,5 +272,19 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             return teamCell
         }
     }
-    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionName = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
+        if kind == UICollectionView.elementKindSectionHeader  {
+            switch (indexPath.section) {
+            case 0:
+                sectionName.collectionHeader.text = "UpComing Events"
+            case 1:
+                sectionName.collectionHeader.text = "Latest Events"
+            default:
+                sectionName.collectionHeader.text = "Teams"
+
+            }
+        }
+        return sectionName
+    }
 }
