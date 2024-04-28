@@ -8,8 +8,12 @@
 import Foundation
 class DetailsPresenter{
     var detailsProtocol :LeagueDetailsProtocol!
-  
     
+    var favList : [League]?
+    
+    init(){
+        favList = getAllFav()
+    }
     func attachView(view:LeagueDetailsProtocol)  {
         self.detailsProtocol = view   //view = ViewContrller
         print("Deatails attached")
@@ -52,7 +56,23 @@ class DetailsPresenter{
     
     }
     
+    func deleteFromFav(leagueIndex:Int){
+        LocalDataSource.shared.deleteMovie(leagueIndex: leagueIndex)
+    }
+    
     func insertLeagueToFavorite(league:League) {
         LocalDataSource.shared.insertLeagueToFavorite(league:league)
     }
+    
+    func getAllFav()->[League]{
+       return LocalDataSource.shared.getAllLeagues()
+    }
+    
+    func isFav(leagueId:Int) -> Bool{
+        if favList!.contains(where: {$0.league_key == leagueId }) {
+            return true
+        }
+        return false
+    }
+    
 }

@@ -20,13 +20,21 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     @IBOutlet weak var FavoriteOutlet: UIBarButtonItem!
     
     @IBAction func FavoriteBtn(_ sender: Any) {
-        print("league\(selctedLeague?.league_name)")
-        presenter.insertLeagueToFavorite(league: selctedLeague!)
-           let filledHeartImage = UIImage(systemName: "heart.fill")
-           FavoriteOutlet.image = filledHeartImage
+     
+        if isFavLeague {
+           // presenter.deleteFromFav(leagueIndex: (selctedLeague?.league_key)!)
+            let nonfilledHeartImage = UIImage(systemName: "heart")
+            FavoriteOutlet.image = nonfilledHeartImage
+        }else{
+            print("league\(selctedLeague?.league_name)")
+            presenter.insertLeagueToFavorite(league: selctedLeague!)
+               let filledHeartImage = UIImage(systemName: "heart.fill")
+               FavoriteOutlet.image = filledHeartImage
+            
+            
+            print("favorite added!!!")
+        }
         
-        
-        print("favorite added!!!")
     }
     let presenter = DetailsPresenter()
     var selctedLeague : League?
@@ -35,6 +43,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     var UpComingArray : [Fixtures] = []
     var LatestEventsArray : [Fixtures] = []
     var teamsArray : [Team] = []
+    var isFavLeague = false
     
     
     func updateUpComing(fixtures: FixturesResponse) {
@@ -71,8 +80,15 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         
         if let leagueId = leagueId {
+            
+            if presenter.isFav(leagueId: leagueId){
+                let filledHeartImage = UIImage(systemName: "heart.fill")
+                FavoriteOutlet.image = filledHeartImage
+                isFavLeague = true
+            }
             presenter.attachView(view: self)
             presenter.getUpComingEvents(leagueId:leagueId)
             presenter.getLatestEvents(leagueId:leagueId)
