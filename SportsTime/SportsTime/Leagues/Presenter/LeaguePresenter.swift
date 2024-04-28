@@ -24,7 +24,6 @@ class LeaguePresenter {
                 
                 print(leagueReslut?.result![0].league_name)
             }
-            
         }
     }
 }

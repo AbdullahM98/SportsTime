@@ -16,4 +16,20 @@ class LatestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var homeName: UILabel!
     @IBOutlet weak var homeImage: UIImageView!
+    
+    
+    override func awakeFromNib() {
+            super.awakeFromNib()
+            configureAppearance()
+        }
+        
+        func configureAppearance() {
+            // Set rounded corners for the cell
+            layer.cornerRadius = 25
+            layer.masksToBounds = true
+            
+            // Set corner color
+            layer.borderColor = UIColor.blue.cgColor
+            layer.borderWidth = 1.0 // You can adjust the width as needed
+        }
 }
