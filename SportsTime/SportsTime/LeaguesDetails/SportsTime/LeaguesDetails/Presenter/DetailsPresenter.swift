@@ -30,7 +30,7 @@ class DetailsPresenter{
     func getLatestEvents(leagueId:Int){
         let leagueIdString = String(leagueId)
         
-        ApiServices.shared.getLeagueDetails(sport:Constants.currSport,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().yesterday,compilation:{
+        ApiServices.shared.getLeagueDetails(sport:Constants.currSport,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().today,compilation:{
             [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateLatest(fixtures: res)
@@ -53,6 +53,6 @@ class DetailsPresenter{
     }
     
     func insertLeagueToFavorite(league:League) {
-        DataBaseManger.insertLeagueToFavorite(league:league)
+        LocalDataSource.shared.insertLeagueToFavorite(league:league)
     }
 }

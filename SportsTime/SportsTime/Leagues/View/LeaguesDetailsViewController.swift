@@ -95,6 +95,8 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             
         }
     }
+    
+    
     override func viewWillAppear(_ animated: Bool){
         collectionView.reloadData()
     }
