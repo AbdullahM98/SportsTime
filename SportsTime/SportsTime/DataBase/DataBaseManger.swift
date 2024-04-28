@@ -18,18 +18,18 @@ class DataBaseManger{
     
     init(){}
     
-    static func insertLeagueToFavorite(league:League,leagueType:String) {
+    static func insertLeagueToFavorite(league:League) {
         
         let movie = NSManagedObject(entity: entity!, insertInto: context)
         movie.setValue(league.league_key, forKey: "league_key")
         movie.setValue(league.league_name, forKey: "league_name")
         movie.setValue(league.league_logo, forKey: "league_logo")
-        movie.setValue(league.country_key, forKey: "country_key")
-        movie.setValue(league.country_name, forKey: "country_name")
-        movie.setValue(league.country_logo, forKey: "country_logo")
+//        movie.setValue(league.country_key, forKey: "country_key")
+//        movie.setValue(league.country_name, forKey: "country_name")
+//        movie.setValue(league.country_logo, forKey: "country_logo")
         
 
-        print(league.league_name as Any)
+        print("success favorite ",league.league_name as Any)
         
         do{
             try

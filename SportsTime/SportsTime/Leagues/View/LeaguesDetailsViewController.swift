@@ -16,6 +16,12 @@ protocol LeagueDetailsProtocol{
 
 
 class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProtocol{
+
+    @IBAction func FavoriteBtn(_ sender: Any) {
+        presenter.insertLeagueToFavorite(league: selctedLeague!)
+        //DataBaseManger.insertLeagueToFavorite(league: selctedLeague!)
+        print("favorite added!!!")
+    }
     let presenter = DetailsPresenter()
     var selctedLeague : League?
     var leagueId :Int!
@@ -61,7 +67,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         print("from details",sportsType)
         if let leagueId = leagueId {
             presenter.attachView(view: self)
-            presenter.getUpComingEvents(leagueId:leagueId, sport:sportsType)
+            presenter.getUpComingEvents(leagueId:leagueId)
             presenter.getLatestEvents(leagueId:leagueId)
             presenter.getTeamsLeague(leagueId: String(leagueId), met: "Teams", sport: "football")
             

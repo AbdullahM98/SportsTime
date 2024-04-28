@@ -388,6 +388,15 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-UA-Nmr">
+                                            <rect key="frame" x="293" y="3" width="51" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                            <connections>
+                                                <action selector="FavoriteBtn:" destination="d2M-on-GN3" eventType="touchUpInside" id="4re-2c-XoO"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.32840956129999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -620,6 +629,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <image name="uefa" width="840" height="859"/>
