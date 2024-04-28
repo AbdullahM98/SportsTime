@@ -20,6 +20,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     @IBOutlet weak var FavoriteOutlet: UIBarButtonItem!
     
     @IBAction func FavoriteBtn(_ sender: Any) {
+        print("league\(selctedLeague?.league_name)")
         presenter.insertLeagueToFavorite(league: selctedLeague!)
            let filledHeartImage = UIImage(systemName: "heart.fill")
            FavoriteOutlet.image = filledHeartImage
@@ -78,6 +79,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             presenter.getTeamsLeague(leagueId: String(leagueId), met: "Teams", sport: "football")
             
             print("league_key details ",selctedLeague?.league_key as Any ,(String(format :"%d" ,leagueId)))
+            print("selected league \(selctedLeague?.league_name)")
             
             let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
                 switch(sectionIndex){

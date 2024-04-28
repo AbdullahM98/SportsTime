@@ -46,19 +46,21 @@ class LocalDataSource {
         do{
             var fetchedList = try managedContext?.fetch(request)
             guard let list = fetchedList else{return []}
-            var league = League()
+           
             for leaguee in list{
-                
+                var league = League()
                 league.league_key = leaguee.value(forKey: "league_key") as? Int
                 league.league_name = leaguee.value(forKey: "league_name") as? String
                 league.league_logo = leaguee.value(forKey: "league_logo") as? String
-
+                print("fetched \(league.league_name)")
                 result.append(league)
             }
         }catch let error as NSError{
             print(error)
         }
-           
+        for item in result{
+            print("fetched \(item.league_name)")
+        }
         return result
       
     }
