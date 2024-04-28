@@ -70,6 +70,7 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         let leagueName = leaguesArray[indexPath.section].league_name
         let leagueeType = sportsType
         let selectedLeague = leaguesArray[indexPath.section]
+        
         if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
             DetailsViewController.selctedLeague = selectedLeague
             DetailsViewController.leagueId = leagueId

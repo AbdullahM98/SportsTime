@@ -17,9 +17,14 @@ protocol LeagueDetailsProtocol{
 
 class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProtocol{
 
+    @IBOutlet weak var FavoriteOutlet: UIBarButtonItem!
+    
     @IBAction func FavoriteBtn(_ sender: Any) {
         presenter.insertLeagueToFavorite(league: selctedLeague!)
-        //DataBaseManger.insertLeagueToFavorite(league: selctedLeague!)
+           let filledHeartImage = UIImage(systemName: "heart.fill")
+           FavoriteOutlet.image = filledHeartImage
+        
+        
         print("favorite added!!!")
     }
     let presenter = DetailsPresenter()
@@ -64,7 +69,8 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("from details",sportsType)
+        
+        
         if let leagueId = leagueId {
             presenter.attachView(view: self)
             presenter.getUpComingEvents(leagueId:leagueId)
