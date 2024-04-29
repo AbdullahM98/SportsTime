@@ -20,21 +20,23 @@ class TeamsTableViewController: UIViewController , UITableViewDelegate , UITable
         players = (team?.players)!
     }
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         players.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let player = players[indexPath.row]
+        let player = players[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamsCell") as! PlayerTableViewCell
         cell.playerName.text = player.playerName
         cell.playerRate.text = player.playerRating
         
       
         KF.url(URL(string: player.playerImage ?? ""))
-            .placeholder(UIImage(named: "lg.png"))
+            .placeholder(UIImage(named: "banzema"))
             .set(to: cell.playerImgView)
         return cell
     }

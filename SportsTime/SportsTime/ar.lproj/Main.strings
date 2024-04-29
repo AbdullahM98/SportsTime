@@ -1,0 +1,59 @@
+/* Class = "UILabel"; text = "Score"; ObjectID = "7mK-sb-d6X"; */
+"7mK-sb-d6X.text" = "النتيجة";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "9Sy-V1-aLJ"; */
+"9Sy-V1-aLJ.text" = "التاريخ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ADf-aK-13J"; */
+"ADf-aK-13J.text" = "التسمية";
+
+/* Class = "UITabBarItem"; title = "Favorite"; ObjectID = "DoW-uw-3EE"; */
+"DoW-uw-3EE.title" = "المفضلة";
+
+/* Class = "UITabBarItem"; title = "Sports"; ObjectID = "GCe-Hm-U7D"; */
+"GCe-Hm-U7D.title" = "الرياضة";
+
+/* Class = "UILabel"; text = "VS"; ObjectID = "GJD-1A-mvc"; */
+"GJD-1A-mvc.text" = "مقابل";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "Ks7-88-oLr"; */
+"Ks7-88-oLr.text" = "التاريخ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RSl-kC-kRx"; */
+"RSl-kC-kRx.text" = "التسمية";
+
+/* Class = "UILabel"; text = "Football"; ObjectID = "SRK-TE-RL7"; */
+"SRK-TE-RL7.text" = "كرة القدم";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YPu-7I-9Mq"; */
+"YPu-7I-9Mq.text" = "التسمية";
+
+/* Class = "UILabel"; text = "Hour"; ObjectID = "Yf2-cm-vWN"; */
+"Yf2-cm-vWN.text" = "الساعة";
+
+/* Class = "UILabel"; text = "VS"; ObjectID = "fpm-0H-JSq"; */
+"fpm-0H-JSq.text" = "مقابل";
+
+/* Class = "UILabel"; text = "Hour"; ObjectID = "k5g-F2-ByY"; */
+"k5g-F2-ByY.text" = "الساعة";
+
+/* Class = "UILabel"; text = "Header"; ObjectID = "lmW-eJ-oyg"; */
+"lmW-eJ-oyg.text" = "العنوان";
+
+/* Class = "UILabel"; text = " Name "; ObjectID = "nb4-gh-cis"; */
+"nb4-gh-cis.text" = "الاسم";
+
+/* Class = "UILabel"; text = " Rating"; ObjectID = "pWn-um-UaX"; */
+"pWn-um-UaX.text" = "التقييم";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sam-Lz-Irw"; */
+"sam-Lz-Irw.text" = "التسمية";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vLI-Ch-LKV"; */
+"vLI-Ch-LKV.text" = "التسمية";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "vmT-Ur-Z2T"; */
+"vmT-Ur-Z2T.text" = "العنوان";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zvZ-gj-amT"; */
+"zvZ-gj-amT.text" = "التسمية";

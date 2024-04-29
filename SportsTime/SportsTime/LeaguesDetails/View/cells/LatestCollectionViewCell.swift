@@ -24,12 +24,10 @@ class LatestCollectionViewCell: UICollectionViewCell {
         }
         
         func configureAppearance() {
-            // Set rounded corners for the cell
             layer.cornerRadius = 25
             layer.masksToBounds = true
             
-            // Set corner color
             layer.borderColor = UIColor.blue.cgColor
-            layer.borderWidth = 1.0 // You can adjust the width as needed
+            layer.borderWidth = 1.0
         }
 }

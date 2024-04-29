@@ -156,35 +156,29 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     
     func leagueTeams() -> NSCollectionLayoutSection{
         
-        //item
-        let itemSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalWidth(0.5))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let groupSize = NSCollectionLayoutSize(widthDimension:        .fractionalWidth(0.7), heightDimension: .absolute(225))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
         
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+             items.forEach { item in
+             let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 3.0)
+             let minScale: CGFloat = 0.8
+             let maxScale: CGFloat = 1.0
+             let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+             item.transform = CGAffineTransform(scaleX: scale, y: scale)
+             }
+        }
+                
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+                let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                
+                section.boundarySupplementaryItems = [headerSupplementary]
         
-        
-        //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
-        
-        //section
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        
-        //    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0)
-        //
-        //        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(10))
-        //        let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        //
-        //        section.boundarySupplementaryItems = [headerSupplementary]
-        
-        //return
         return section
-        
-        
         
         
     }
@@ -201,6 +195,17 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch(section){
         case 0:
+            if UpComingArray.isEmpty {
+                       let defaultFixtures = Fixtures()
+                       defaultFixtures.event_home_team = "No Team"
+                       defaultFixtures.event_away_team = "No Team"
+                       defaultFixtures.home_team_logo = "No Team"
+                       defaultFixtures.away_team_logo = "No Team"
+                       defaultFixtures.event_date = "1/1"
+                       defaultFixtures.event_time = "00:00"
+                       UpComingArray.append(defaultFixtures)
+                       return 1
+                   }
             return UpComingArray.count
         case 1:
             return LatestEventsArray.count
@@ -211,13 +216,14 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         }
         
     }
+
+
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             var currTeam = teamsArray[indexPath.row]
             if let TeamsTableViewController = storyboard?.instantiateViewController(withIdentifier: "TeamsTableViewController") as? TeamsTableViewController {
                 TeamsTableViewController.team = currTeam
-                
                 
                 navigationController?.pushViewController(TeamsTableViewController, animated: true)
             }
@@ -235,13 +241,36 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         case 0:
             upcomingCell.homeLabel.text = UpComingArray[indexPath.row].event_home_team
             upcomingCell.backgroundImageView.image = UIImage(named: "backgroundImage")
-            KF.url(URL(string: UpComingArray[indexPath.row].home_team_logo ?? ""))
-                .placeholder(UIImage(named: "lg.png"))
-                .set(to: upcomingCell.homeImage)
             
-            KF.url(URL(string: UpComingArray[indexPath.row].away_team_logo ?? ""))
-                .placeholder(UIImage(named: "lg.png"))
-                .set(to: upcomingCell.enemyImage)
+            switch (sportsType) {
+            case "football":
+                KF.url(URL(string: UpComingArray[indexPath.row].home_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: upcomingCell.homeImage)
+                
+                KF.url(URL(string: UpComingArray[indexPath.row].away_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: upcomingCell.enemyImage)
+            case "tennis":
+                KF.url(URL(string: UpComingArray[indexPath.row].event_first_player_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: upcomingCell.homeImage)
+                
+                KF.url(URL(string: UpComingArray[indexPath.row].event_second_player_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: upcomingCell.enemyImage)
+                
+           //basket cricket
+            default:
+                KF.url(URL(string: UpComingArray[indexPath.row].event_home_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: upcomingCell.homeImage)
+                
+                KF.url(URL(string: UpComingArray[indexPath.row].event_away_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: upcomingCell.enemyImage)
+            }
+           
             
             upcomingCell.enemyLabel.text = UpComingArray[indexPath.row].event_away_team
             upcomingCell.dateLabel.text = UpComingArray[indexPath.row].event_date
@@ -251,13 +280,34 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         case 1 :
 
             latesstCell.homeName.text = LatestEventsArray[indexPath.row].event_home_team
-            KF.url(URL(string: LatestEventsArray[indexPath.row].home_team_logo ?? ""))
-                .placeholder(UIImage(named: "lg.png"))
-                .set(to: latesstCell.homeImage)
-            
-            KF.url(URL(string: LatestEventsArray[indexPath.row].away_team_logo ?? ""))
-                .placeholder(UIImage(named: "lg.png"))
-                .set(to: latesstCell.enemyImage)
+            switch (sportsType) {
+            case "football":
+                KF.url(URL(string: LatestEventsArray[indexPath.row].home_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: latesstCell.homeImage)
+                
+                KF.url(URL(string: LatestEventsArray[indexPath.row].away_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: latesstCell.enemyImage)
+            case "tennis":
+                KF.url(URL(string: LatestEventsArray[indexPath.row].event_first_player_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: latesstCell.homeImage)
+                
+                KF.url(URL(string: LatestEventsArray[indexPath.row].event_second_player_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: latesstCell.enemyImage)
+                
+           //basket cricket
+            default:
+                KF.url(URL(string: LatestEventsArray[indexPath.row].event_home_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo"))
+                    .set(to: latesstCell.homeImage)
+                
+                KF.url(URL(string: LatestEventsArray[indexPath.row].event_away_team_logo ?? ""))
+                    .placeholder(UIImage(named: "basketballLogo2"))
+                    .set(to: latesstCell.enemyImage)
+            }
             
             latesstCell.enemyName.text = LatestEventsArray[indexPath.row].event_away_team
             latesstCell.eventDate.text = LatestEventsArray[indexPath.row].event_date
@@ -267,7 +317,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         case 2:
             
             KF.url(URL(string: teamsArray[indexPath.row].teamLogo ?? ""))
-                .placeholder(UIImage(named: "lg.png"))
+                .placeholder(UIImage(named: "sports"))
                 .set(to: teamCell.teamImgView)
         default :
             latesstCell

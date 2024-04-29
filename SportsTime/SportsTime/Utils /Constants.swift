@@ -22,8 +22,7 @@ enum Sports:String {
     case tennis = "tennis"
     case basketball = "basketball"
     case cricket = "cricket"
-    
-    
+
 }
 
 

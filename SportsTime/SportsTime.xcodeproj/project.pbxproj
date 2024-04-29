@@ -105,6 +105,8 @@
 		7FCA81B52BDB9CDE0045DF6B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7FCA81BC2BDE176D0045DF6B /* DataBaseManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManger.swift; sourceTree = "<group>"; };
 		7FCA81BE2BDE1F370045DF6B /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeaderCollectionReusableView.swift; path = SportsTime/DataBase/HeaderCollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
+		7FCA81C92BDEFBE30045DF6B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		7FCA81CA2BDEFBE30045DF6B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7FEB0CC82BD6F6A3004AC488 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FEB0CCE2BD6FB59004AC488 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B3D33DB6E4A1637D5CA343AB /* Pods-SportsTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsTime.release.xcconfig"; path = "Target Support Files/Pods-SportsTime/Pods-SportsTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,19 +214,15 @@
 		763C48BF2BD68B70009B09EA /* SportsTime */ = {
 			isa = PBXGroup;
 			children = (
+				76763A4E2BD6A2B000F2512D /* Models */,
 				7FCA81BB2BDE17500045DF6B /* DataBase */,
 				76B3FB6D2BDA9DB1002B4E1C /* Teams */,
 				7FB5DBDE2BD89A5400453FB9 /* Leagues */,
 				7FEEDF562BD6D54400129F61 /* LeaguesDetails */,
 				761CF2F12BD84022007C69DE /* Utils  */,
 				7FEB0CC32BD6ECAE004AC488 /* Lottie */,
-				7FEEDF592BD6D68A00129F61 /* RemoteDataSource */,
-				7FEEDF582BD6D61F00129F61 /* LocalDataSource */,
-				7FEEDF572BD6D5F500129F61 /* TeamDetails */,
-				7FEEDF542BD6D51100129F61 /* Favorite */,
 				7FEEDF532BD6D4F700129F61 /* Splash */,
 				7FEEDF522BD6D4CB00129F61 /* Home */,
-				76763A4E2BD6A2B000F2512D /* Models */,
 				763C48C02BD68B70009B09EA /* AppDelegate.swift */,
 				763C48C22BD68B70009B09EA /* SceneDelegate.swift */,
 				763C48C62BD68B70009B09EA /* Main.storyboard */,
@@ -374,15 +372,6 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		7FEEDF542BD6D51100129F61 /* Favorite */ = {
-			isa = PBXGroup;
-			children = (
-				7FEEDF612BD6D7A400129F61 /* View */,
-				7FEEDF602BD6D79400129F61 /* ViewModel */,
-			);
-			path = Favorite;
-			sourceTree = "<group>";
-		};
 		7FEEDF562BD6D54400129F61 /* LeaguesDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,63 +381,12 @@
 			path = LeaguesDetails;
 			sourceTree = "<group>";
 		};
-		7FEEDF572BD6D5F500129F61 /* TeamDetails */ = {
-			isa = PBXGroup;
-			children = (
-				7FEEDF5A2BD6D6F500129F61 /* View */,
-				7FEEDF5B2BD6D70200129F61 /* ViewModel */,
-			);
-			path = TeamDetails;
-			sourceTree = "<group>";
-		};
-		7FEEDF582BD6D61F00129F61 /* LocalDataSource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LocalDataSource;
-			sourceTree = "<group>";
-		};
-		7FEEDF592BD6D68A00129F61 /* RemoteDataSource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RemoteDataSource;
-			sourceTree = "<group>";
-		};
-		7FEEDF5A2BD6D6F500129F61 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7FEEDF5B2BD6D70200129F61 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		7FEEDF5C2BD6D73200129F61 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7F7752552BDAAB800031831B /* LeaguesDetailsViewController.swift */,
 				7FCA81BE2BDE1F370045DF6B /* HeaderCollectionReusableView.swift */,
 				7FCA81C02BDE202D0045DF6B /* cells */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7FEEDF602BD6D79400129F61 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		7FEEDF612BD6D7A400129F61 /* View */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -552,6 +490,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 763C48B42BD68B70009B09EA;
 			productRefGroup = 763C48BE2BD68B70009B09EA /* Products */;
@@ -768,6 +707,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				763C48C72BD68B70009B09EA /* Base */,
+				7FCA81C92BDEFBE30045DF6B /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -776,6 +716,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				763C48CF2BD68B73009B09EA /* Base */,
+				7FCA81CA2BDEFBE30045DF6B /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -788,6 +729,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -851,6 +793,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
