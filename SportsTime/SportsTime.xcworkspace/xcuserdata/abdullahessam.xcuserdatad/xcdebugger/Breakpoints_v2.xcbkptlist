@@ -62,9 +62,9 @@
             filePath = "SportsTime/Leagues/View/LeaguesDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "leagueTeams()"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "upComingEvents()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1889FECF-DE58-4EE1-9778-E733E6930063"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
@@ -136,7 +136,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F845B270-38CF-4589-AD13-577ED4CFF86B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
@@ -177,6 +177,21 @@
                   endingLineNumber = "53"
                   offsetFromSymbolStart = "646">
                </Location>
+               <Location
+                  uuid = "F845B270-38CF-4589-AD13-577ED4CFF86B - d17dcf51693a82de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;SportsTime.TeamResponse&gt;) -&gt; () in SportsTime.DetailsPresenter.getTeamsLeague(leagueId: Swift.String, met: Swift.String, sport: Swift.String) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Leagues/View/DetailsPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "646">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -193,6 +208,150 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "getTeams(sport:met:leagueId:compelition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9BAFF8B-CB0C-4B5C-B111-2FB960C9AB5A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Models/DataSources/ApiServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getTeams(sport:met:leagueId:compelition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "891D9A7D-DACC-475E-B607-EE28C245D4D7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getLatestEvents(leagueId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94C19BD4-4EC9-4381-ABB6-6142E3F27E5E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Leagues/View/DetailsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "getLatestEvents(leagueId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94C19BD4-4EC9-4381-ABB6-6142E3F27E5E - 765f0bf797f497ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SportsTime.DetailsPresenter.getLatestEvents(leagueId: Swift.Int) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Leagues/View/DetailsPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "122">
+               </Location>
+               <Location
+                  uuid = "94C19BD4-4EC9-4381-ABB6-6142E3F27E5E - c4cf2c5a63fff7d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;SportsTime.FixturesResponse&gt;) -&gt; () in SportsTime.DetailsPresenter.getLatestEvents(leagueId: Swift.Int) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Leagues/View/DetailsPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "81">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C30DE21D-3FF4-41B6-9819-2B754866C655"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Models/DataSources/ApiServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getLeagueDetails(sport:met:leagueId:from:to:compilation:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C30DE21D-3FF4-41B6-9819-2B754866C655 - 92bf9d2ce42eca32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SportsTime.ApiServices.getLeagueDetails(sport: Swift.String, met: Swift.String, leagueId: Swift.Int, from: Swift.String, to: Swift.String, compilation: (Swift.Optional&lt;SportsTime.FixturesResponse&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/DataSources/ApiServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "1464">
+               </Location>
+               <Location
+                  uuid = "C30DE21D-3FF4-41B6-9819-2B754866C655 - 26d72388bbf88c1b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in SportsTime.ApiServices.getLeagueDetails(sport: Swift.String, met: Swift.String, leagueId: Swift.Int, from: Swift.String, to: Swift.String, compilation: (Swift.Optional&lt;SportsTime.FixturesResponse&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SportsTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdullahessam/Documents/GitHub/SportsTime/SportsTime/SportsTime/SportsTime/Models/DataSources/ApiServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "262">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DA1CDAB-E1A7-4FDC-A69A-6F78EF30A552"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsTime/Models/DataSources/ApiServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getLeagueDetails(sport:met:leagueId:from:to:compilation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

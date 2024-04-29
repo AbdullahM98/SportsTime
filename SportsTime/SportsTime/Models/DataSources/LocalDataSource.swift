@@ -18,6 +18,27 @@ class LocalDataSource {
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
+    
+    
+     func insertLeagueToFavorite(league:League) {
+         let entity = NSEntityDescription.entity(forEntityName: "FavLeague", in: managedContext!)
+        let movie = NSManagedObject(entity: entity!, insertInto: managedContext)
+        movie.setValue(league.league_key, forKey: "league_key")
+        movie.setValue(league.league_name, forKey: "league_name")
+        movie.setValue(league.league_logo, forKey: "league_logo")
+
+        print("success favorite ",league.league_name as Any)
+        
+        do{
+            try
+            DataBaseManger.context.save()
+        }catch let error as NSError{
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    
     func getAllLeagues() ->[League]{
         
         var result:[League] = []
@@ -25,22 +46,21 @@ class LocalDataSource {
         do{
             var fetchedList = try managedContext?.fetch(request)
             guard let list = fetchedList else{return []}
-            var league = League()
+           
             for leaguee in list{
-                
+                var league = League()
                 league.league_key = leaguee.value(forKey: "league_key") as? Int
                 league.league_name = leaguee.value(forKey: "league_name") as? String
-                league.country_name = leaguee.value(forKey: "country_name") as? String
-                league.country_key = leaguee.value(forKey: "country_key") as? Int
                 league.league_logo = leaguee.value(forKey: "league_logo") as? String
-                league.country_logo = leaguee.value(forKey: "country_logo") as? String
-                
+                print("fetched \(league.league_name)")
                 result.append(league)
             }
         }catch let error as NSError{
             print(error)
         }
-           
+        for item in result{
+            print("fetched \(item.league_name)")
+        }
         return result
       
     }

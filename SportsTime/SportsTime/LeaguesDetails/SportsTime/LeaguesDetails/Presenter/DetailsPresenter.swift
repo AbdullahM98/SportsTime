@@ -8,8 +8,12 @@
 import Foundation
 class DetailsPresenter{
     var detailsProtocol :LeagueDetailsProtocol!
-  
     
+    var favList : [League]?
+    
+    init(){
+        favList = getAllFav()
+    }
     func attachView(view:LeagueDetailsProtocol)  {
         self.detailsProtocol = view   //view = ViewContrller
         print("Deatails attached")
@@ -30,7 +34,7 @@ class DetailsPresenter{
     func getLatestEvents(leagueId:Int){
         let leagueIdString = String(leagueId)
         
-        ApiServices.shared.getLeagueDetails(sport:Constants.currSport,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().yesterday,compilation:{
+        ApiServices.shared.getLeagueDetails(sport:Constants.currSport,met: Constants.fixtures,leagueId:leagueId,from: DateFormat.getDate().yesterday,to: DateFormat.getDate().today,compilation:{
             [weak self] result in
             if let res = result{
                 self!.detailsProtocol.updateLatest(fixtures: res)
@@ -52,7 +56,23 @@ class DetailsPresenter{
     
     }
     
-    func insertLeagueToFavorite(league:League) {
-        DataBaseManger.insertLeagueToFavorite(league:league)
+    func deleteFromFav(leagueIndex:Int){
+        LocalDataSource.shared.deleteMovie(leagueIndex: leagueIndex)
     }
+    
+    func insertLeagueToFavorite(league:League) {
+        LocalDataSource.shared.insertLeagueToFavorite(league:league)
+    }
+    
+    func getAllFav()->[League]{
+       return LocalDataSource.shared.getAllLeagues()
+    }
+    
+    func isFav(leagueId:Int) -> Bool{
+        if favList!.contains(where: {$0.league_key == leagueId }) {
+            return true
+        }
+        return false
+    }
+    
 }
