@@ -17,11 +17,13 @@ class FavoriteViewController: UIViewController , UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter.view = self
         favLeagues = presenter.getAllFav()
         self.favTableView.reloadData()
         // Do any additional setup after loading the view.
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1

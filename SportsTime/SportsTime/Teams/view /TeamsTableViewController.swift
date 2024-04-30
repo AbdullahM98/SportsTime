@@ -9,15 +9,26 @@ import UIKit
 import Kingfisher
 
 class TeamsTableViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,UICollectionViewDelegateFlowLayout, TeamsProtocol {
+    
+    @IBOutlet weak var teamDetailsName: UILabel!
+    @IBOutlet weak var teamDetailsImage: UIImageView!
+    
     var team :Team?
     var players :[Player] = []
     
     let presenter = TeamsPresenter()
     
     override func viewDidLoad() {
+        
         presenter.attachView(view: self)
         presenter.getTeam(teamKey:Int((team?.teamKey)!).description)
         players = (team?.players)!
+    
+        
+        KF.url(URL(string: team?.teamLogo ?? ""))
+            .placeholder(UIImage(named: "Barcelona"))
+            .set(to:teamDetailsImage)
+        teamDetailsName.text = team?.teamName!
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

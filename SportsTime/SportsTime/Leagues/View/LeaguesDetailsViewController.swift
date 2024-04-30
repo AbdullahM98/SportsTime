@@ -16,75 +16,49 @@ protocol LeagueDetailsProtocol{
 
 
 class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProtocol{
+    
+    let presenter = DetailsPresenter()
+    var selctedLeague : League?
+    var leagueId :Int!
+    var sportsType : String!
+    var leagueName : String!
+    var UpComingArray : [Fixtures] = []
+    var LatestEventsArray : [Fixtures] = []
+    var teamsArray : [Team] = []
+    var isFavLeague = false
+    var fixtureActiviyIndicator  = UIActivityIndicatorView()
 
     @IBOutlet weak var FavoriteOutlet: UIBarButtonItem!
     
     @IBAction func FavoriteBtn(_ sender: Any) {
-     
+        
         if isFavLeague {
-           // presenter.deleteFromFav(leagueIndex: (selctedLeague?.league_key)!)
             let nonfilledHeartImage = UIImage(systemName: "heart")
             FavoriteOutlet.image = nonfilledHeartImage
         }else{
             print("league\(selctedLeague?.league_name)")
             presenter.insertLeagueToFavorite(league: selctedLeague!)
-               let filledHeartImage = UIImage(systemName: "heart.fill")
-               FavoriteOutlet.image = filledHeartImage
+            let filledHeartImage = UIImage(systemName: "heart.fill")
+            FavoriteOutlet.image = filledHeartImage
             
             
             print("favorite added!!!")
         }
         
     }
-    let presenter = DetailsPresenter()
-    var selctedLeague : League?
-    var leagueId :Int!
-    var sportsType : String = ""
-    var UpComingArray : [Fixtures] = []
-    var LatestEventsArray : [Fixtures] = []
-    var teamsArray : [Team] = []
-    var isFavLeague = false
-    
-    
-    func updateUpComing(fixtures: FixturesResponse) {
-        if let result = fixtures.result{
-            self.UpComingArray = result
-            DispatchQueue.main.async {
-                print("from updata UpComingArray",self.UpComingArray.count)
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
-    
-    
-    func updateLatest(fixtures: FixturesResponse) {
-        if let result = fixtures.result{
-            self.LatestEventsArray = result
-            DispatchQueue.main.async {
-                print("from updata LatestEventsArray",self.LatestEventsArray[0].event_final_result)
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
-    func updateTeams(teams:TeamResponse){
-        if let res = teams.result{
-            self.teamsArray = res
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
-        
+        self.title = leagueName
+        fixtureActiviyIndicator.center = self.view.center
+        fixtureActiviyIndicator.hidesWhenStopped = true
+        fixtureActiviyIndicator.style = .large
+        fixtureActiviyIndicator.color = UIColor.blue
+        view.addSubview(fixtureActiviyIndicator)
+        fixtureActiviyIndicator.startAnimating()
+        collectionView.isHidden = true
+
         if let leagueId = leagueId {
-            
-            if presenter.isFav(leagueId: leagueId){
+                if presenter.isFav(leagueId: leagueId){
                 let filledHeartImage = UIImage(systemName: "heart.fill")
                 FavoriteOutlet.image = filledHeartImage
                 isFavLeague = true
@@ -93,9 +67,6 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             presenter.getUpComingEvents(leagueId:leagueId)
             presenter.getLatestEvents(leagueId:leagueId)
             presenter.getTeamsLeague(leagueId: String(leagueId), met: "Teams", sport: "football")
-            
-            print("league_key details ",selctedLeague?.league_key as Any ,(String(format :"%d" ,leagueId)))
-            print("selected league \(selctedLeague?.league_name)")
             
             let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
                 switch(sectionIndex){
@@ -113,12 +84,47 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             
         }
     }
-    
-    
     override func viewWillAppear(_ animated: Bool){
         collectionView.reloadData()
     }
     
+    func updateUpComing(fixtures: FixturesResponse) {
+        if let result = fixtures.result{
+            self.UpComingArray = result
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.collectionView.isHidden = false
+                self.collectionView.isHidden = false
+                self.fixtureActiviyIndicator.stopAnimating()
+
+            }
+        }
+    }
+    func updateLatest(fixtures: FixturesResponse) {
+        if let result = fixtures.result{
+            self.LatestEventsArray = result
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.collectionView.isHidden = false
+                self.fixtureActiviyIndicator.stopAnimating()
+
+            }
+        }
+    }
+    
+    func updateTeams(teams:TeamResponse){
+        if let res = teams.result{
+            self.teamsArray = res
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.collectionView.isHidden = false
+                self.fixtureActiviyIndicator.stopAnimating()
+
+            }
+        }
+    }
+    
+    // MARK: - layaout Sections
     
     func latestEvents() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
@@ -177,26 +183,26 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     func leagueTeams() -> NSCollectionLayoutSection{
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let groupSize = NSCollectionLayoutSize(widthDimension:        .fractionalWidth(0.7), heightDimension: .absolute(225))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension:        .fractionalWidth(0.7), heightDimension: .absolute(225))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         
         section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-             items.forEach { item in
-             let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 3.0)
-             let minScale: CGFloat = 0.8
-             let maxScale: CGFloat = 1.0
-             let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-             item.transform = CGAffineTransform(scaleX: scale, y: scale)
-             }
+            items.forEach { item in
+                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 3.0)
+                let minScale: CGFloat = 0.8
+                let maxScale: CGFloat = 1.0
+                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }
         }
-                
+        
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
-                let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-                
-                section.boundarySupplementaryItems = [headerSupplementary]
+        let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        section.boundarySupplementaryItems = [headerSupplementary]
         
         return section
         
@@ -211,23 +217,34 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         return 3
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch(section){
         case 0:
             if UpComingArray.isEmpty {
-                       let defaultFixtures = Fixtures()
-                       defaultFixtures.event_home_team = "No Team"
-                       defaultFixtures.event_away_team = "No Team"
-                       defaultFixtures.home_team_logo = "No Team"
-                       defaultFixtures.away_team_logo = "No Team"
-                       defaultFixtures.event_date = "1/1"
-                       defaultFixtures.event_time = "00:00"
-                       UpComingArray.append(defaultFixtures)
-                       return 1
-                   }
+                let defaultFixtures = Fixtures()
+                defaultFixtures.event_home_team = "No Team"
+                defaultFixtures.event_away_team = "No Team"
+                defaultFixtures.home_team_logo = "No Team"
+                defaultFixtures.away_team_logo = "No Team"
+                defaultFixtures.event_date = "1/1"
+                defaultFixtures.event_time = "00:00"
+                UpComingArray.append(defaultFixtures)
+                return 1
+            }
             return UpComingArray.count
         case 1:
+            if LatestEventsArray.isEmpty {
+                let defaultFixtures = Fixtures()
+                defaultFixtures.event_home_team = "No Team"
+                defaultFixtures.event_away_team = "No Team"
+                defaultFixtures.home_team_logo = "No Team"
+                defaultFixtures.away_team_logo = "No Team"
+                defaultFixtures.event_date = "1/1"
+                defaultFixtures.event_time = "00:00"
+                defaultFixtures.event_final_result  = "0:0"
+                LatestEventsArray.append(defaultFixtures)
+                return 1
+            }
             return LatestEventsArray.count
         case 2 :
             return teamsArray.count
@@ -236,8 +253,8 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         }
         
     }
-
-
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
@@ -280,7 +297,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
                     .placeholder(UIImage(named: "basketballLogo2"))
                     .set(to: upcomingCell.enemyImage)
                 
-           //basket cricket
+                //basket cricket
             default:
                 KF.url(URL(string: UpComingArray[indexPath.row].event_home_team_logo ?? ""))
                     .placeholder(UIImage(named: "basketballLogo"))
@@ -290,7 +307,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
                     .placeholder(UIImage(named: "basketballLogo2"))
                     .set(to: upcomingCell.enemyImage)
             }
-           
+            
             
             upcomingCell.enemyLabel.text = UpComingArray[indexPath.row].event_away_team
             upcomingCell.dateLabel.text = UpComingArray[indexPath.row].event_date
@@ -298,7 +315,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             
             
         case 1 :
-
+            
             latesstCell.homeName.text = LatestEventsArray[indexPath.row].event_home_team
             switch (sportsType) {
             case "football":
@@ -318,7 +335,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
                     .placeholder(UIImage(named: "basketballLogo2"))
                     .set(to: latesstCell.enemyImage)
                 
-           //basket cricket
+                //basket cricket
             default:
                 KF.url(URL(string: LatestEventsArray[indexPath.row].event_home_team_logo ?? ""))
                     .placeholder(UIImage(named: "basketballLogo"))
@@ -364,7 +381,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
                 sectionName.collectionHeader.text = "Latest Events"
             default:
                 sectionName.collectionHeader.text = "Teams"
-
+                
             }
         }
         return sectionName

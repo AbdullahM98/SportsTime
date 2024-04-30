@@ -12,8 +12,7 @@ target 'SportsTime' do
   pod 'SwiftyOnboard'
   pod 'SplashScreen'
   pod 'lottie-ios'
-
-
+  pod 'ReachabilitySwift'
 
   target 'SportsTimeTests' do
     inherit! :search_paths

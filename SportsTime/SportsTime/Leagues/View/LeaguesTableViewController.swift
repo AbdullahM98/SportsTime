@@ -13,21 +13,28 @@ protocol LeagueProtocol {
 }
 
 class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITableViewDataSource,LeagueProtocol {
-    
-    
-    @IBOutlet weak var searchBar: UISearchBar!
     var leaguesArray: [League] = []
+    var searchingList :[League] = []
     var sportsType : String = ""
     let presenter = LeaguePresenter()
     var isSearching = false
-    var searchingList :[League] = []
+    var activiyIndicator  = UIActivityIndicatorView()
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var leaguesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = sportsType
+        
+        activiyIndicator.center = self.view.center
+        activiyIndicator.hidesWhenStopped = true
+        activiyIndicator.style = .large
+        activiyIndicator.color = UIColor.blue
+        view.addSubview(activiyIndicator)
+        activiyIndicator.startAnimating()
+        
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
-        print("LeagueName ",sportsType)
     }
     override func viewWillAppear(_ animated: Bool) {
         leaguesTableView.reloadData()
@@ -36,8 +43,9 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     func updateLeagues(res:LeagueResponse) {
         self.leaguesArray = res.result!
         DispatchQueue.main.async {
-            print("from updata",self.leaguesArray.count)
             self.leaguesTableView.reloadData()
+            self.activiyIndicator.stopAnimating()
+
         }
         
     }
@@ -80,13 +88,17 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         let leagueeType = sportsType
         let selectedLeague = leaguesArray[indexPath.section]
         
-        if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
-            DetailsViewController.selctedLeague = selectedLeague
-            DetailsViewController.leagueId = leagueId
-            DetailsViewController.sportsType = sportsType
-
-            navigationController?.pushViewController(DetailsViewController, animated: true)
-        }
+         if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
+             DetailsViewController.selctedLeague = selectedLeague
+             DetailsViewController.leagueId = leagueId
+             DetailsViewController.leagueName = leagueName
+             DetailsViewController.sportsType = sportsType
+             if(sportsType == "tennis"){
+                 showAlert(title: "No Details For Tennis ", message: "please choosen another Sport ", index: indexPath)
+             }else{
+                 navigationController?.pushViewController(DetailsViewController, animated: true)
+             }
+         }
         
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -120,11 +132,32 @@ extension LeaguesTableViewController : UISearchBarDelegate{
 
         
     }
+    
+    func showAlert(title: String, message: String, index:IndexPath) {
+        // Create the alert controller
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            //self.navigationController?.popViewController(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel Pressed")
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        // Assuming this function is called from a UIViewController
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         searchBar.text = ""
         self.leaguesTableView.reloadData()
     }
 }
-
-// $0.league_name?.prefix(searchText.count))! == searchText
