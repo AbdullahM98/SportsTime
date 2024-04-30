@@ -12,12 +12,17 @@ protocol LeagueProtocol {
     func updateLeagues(res:LeagueResponse)
 }
 
-class LeaguesTableViewController: UITableViewController,LeagueProtocol {
+class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITableViewDataSource,LeagueProtocol {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     var leaguesArray: [League] = []
     var sportsType : String = ""
     let presenter = LeaguePresenter()
+    var isSearching = false
+    var searchingList :[League] = []
     
-    
+    @IBOutlet weak var leaguesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attachView(view: self)
@@ -25,29 +30,33 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         print("LeagueName ",sportsType)
     }
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        leaguesTableView.reloadData()
 
     }
     func updateLeagues(res:LeagueResponse) {
         self.leaguesArray = res.result!
         DispatchQueue.main.async {
             print("from updata",self.leaguesArray.count)
-            self.tableView.reloadData()
+            self.leaguesTableView.reloadData()
         }
         
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return leaguesArray.count
+     func numberOfSections(in tableView: UITableView) -> Int {
+         if isSearching{
+             return searchingList.count
+         }else{
+             return leaguesArray.count
+         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell", for: indexPath)
         let league = leaguesArray[indexPath.section]
         
@@ -60,11 +69,11 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         
         return cell
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let leagueId = leaguesArray[indexPath.section].league_key
         let leagueName = leaguesArray[indexPath.section].league_name
@@ -80,41 +89,42 @@ class LeaguesTableViewController: UITableViewController,LeagueProtocol {
         }
         
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        " "
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        5
+    }
+   
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+   
     
    
 }
+
+extension LeaguesTableViewController : UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+       
+        isSearching = true
+        if !searchText.isEmpty {
+           
+            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
+        
+            for league in searchingList{
+                print("filtered name : \(league.league_name!)")
+            }
+        }
+        
+        self.leaguesTableView.reloadData()
+
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        self.leaguesTableView.reloadData()
+    }
+}
+
+// $0.league_name?.prefix(searchText.count))! == searchText
