@@ -9,7 +9,7 @@ import Foundation
 import Reachability
 
 class ReachabilityNetwork{
-    static let shared = ApiServices.shared
+    static let shared = ReachabilityNetwork()
 
     private let reachability = try! Reachability()
     

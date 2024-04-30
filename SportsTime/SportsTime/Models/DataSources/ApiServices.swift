@@ -12,7 +12,6 @@ class ApiServices  {
     
     static let shared : ApiServices = ApiServices()
     private  init() {
-        
     }
     
     func getLeaguesNetwork(sport :String,met:String,compilation: @escaping (LeagueResponse?) -> Void) {
@@ -115,7 +114,5 @@ class ApiServices  {
   
     }
     
-    
-
-    }
+}
 

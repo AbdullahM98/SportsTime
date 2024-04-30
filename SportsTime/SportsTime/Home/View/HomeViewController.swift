@@ -48,7 +48,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let legues = storyboard?.instantiateViewController(withIdentifier: "LeaguesTableViewController") as! LeaguesTableViewController
-        
+        if ReachabilityNetwork.shared.isNetworkAvailable {
         switch(names[indexPath.row]){
         case "Football":
             legues.sportsType = "football"
@@ -66,17 +66,27 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
             break
         }
         self.navigationController?.pushViewController(legues, animated: true)
+        } else {
+            showAlert(title: "No Internet Connection ", message: "Please check your Network ", index: indexPath)
+        }
 
     }
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
+    func showAlert(title: String, message: String, index:IndexPath) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            //self.navigationController?.popViewController(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel Pressed")
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+    
+        self.present(alertController, animated: true, completion: nil)
+    }
         
     
 }
