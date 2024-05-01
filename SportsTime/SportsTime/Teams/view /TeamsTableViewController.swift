@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class TeamsTableViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,UICollectionViewDelegateFlowLayout, TeamsProtocol {
+class TeamsTableViewController: UIViewController , TeamsProtocol {
     
     @IBOutlet weak var teamDetailsName: UILabel!
     @IBOutlet weak var teamDetailsImage: UIImageView!
@@ -30,6 +30,15 @@ class TeamsTableViewController: UIViewController , UITableViewDelegate , UITable
             .set(to:teamDetailsImage)
         teamDetailsName.text = team?.teamName!
     }
+
+    func updateView(team: TeamResponse) {
+
+    }
+    
+}
+
+extension TeamsTableViewController : UITableViewDelegate , UITableViewDataSource {
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         players.count
@@ -52,14 +61,13 @@ class TeamsTableViewController: UIViewController , UITableViewDelegate , UITable
         return cell
     }
     
-    func updateView(team: TeamResponse) {
-
-    }
+   
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
     
-
+    
+    
     
 }

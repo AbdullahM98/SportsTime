@@ -714,12 +714,12 @@
                                     <outlet property="delegate" destination="5DZ-Cc-Lyn" id="Psc-Hk-GZQ"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1q-2h-PdG">
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-6h-scV">
                                 <rect key="frame" x="0.0" y="120" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="5DZ-Cc-Lyn" id="A2g-n8-jlW"/>
+                                    <outlet property="delegate" destination="5DZ-Cc-Lyn" id="MwA-xY-Erw"/>
                                 </connections>
                             </searchBar>
                         </subviews>
@@ -728,7 +728,7 @@
                     </view>
                     <connections>
                         <outlet property="leaguesTableView" destination="Gm4-2T-5pa" id="7dP-1x-Ol4"/>
-                        <outlet property="searchBar" destination="R1q-2h-PdG" id="DiM-ME-H8B"/>
+                        <outlet property="searchBar" destination="xN6-6h-scV" id="G9l-uL-6RY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lra-Lq-lZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

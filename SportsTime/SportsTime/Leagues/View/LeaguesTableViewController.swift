@@ -21,6 +21,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     var activiyIndicator  = UIActivityIndicatorView()
     
     @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var leaguesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     }
     override func viewWillAppear(_ animated: Bool) {
         leaguesTableView.reloadData()
-        
+     
 
     }
     func updateLeagues(res:LeagueResponse) {
@@ -70,7 +71,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell", for: indexPath)
-        let league = leaguesArray[indexPath.section]
+         let league =  leaguesArray[indexPath.section]
         
         cell.textLabel?.text = league.league_name
         if let logoURLString = league.league_logo, let logoURL = URL(string: logoURLString) {
@@ -97,8 +98,8 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
              DetailsViewController.leagueId = leagueId
              DetailsViewController.leagueName = leagueName
              DetailsViewController.sportsType = sportsType
-             DetailsViewController.leagueIndex = leaguesArray.firstIndex(where: {$0.league_key == selectedLeague.league_key})
-             print("sectionIndex is \(DetailsViewController.leagueIndex)")
+           
+            
              if(sportsType == "tennis"){
                  showAlert(title: "No Details For Tennis ", message: "please choosen another Sport ", index: indexPath)
              }else{
@@ -122,41 +123,55 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
 
 extension LeaguesTableViewController : UISearchBarDelegate , UISearchResultsUpdating{
     
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isSearching = true
+        print("didd")
+        if !searchText.isEmpty {
+            
+            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
+            print("search list is \(searchingList.count)")
+        }else{
+        searchingList = leaguesArray
+        }
+        
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
-        isSearching = true
-            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-                
-        searchingList = leaguesArray.filter { league in
-                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
-                }
-            }
-        self.leaguesTableView.reloadData()
+      print("here")
+//        isSearching = true
+//            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+//                
+//        searchingList = leaguesArray.filter { league in
+//                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
+//               }
+//             
+//            }else{
+//                searchingList = leaguesArray
+//            }
+//        self.leaguesTableView.reloadData()
         }
     
     
     
     
     func showAlert(title: String, message: String, index:IndexPath) {
-        // Create the alert controller
+       
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        // Create the actions
+      
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            //self.navigationController?.popViewController(animated: true)
+           
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             print("Cancel Pressed")
         }
         
-        // Add the actions
+   
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
         
-        // Present the controller
-        // Assuming this function is called from a UIViewController
+       
         self.present(alertController, animated: true, completion: nil)
     }
     

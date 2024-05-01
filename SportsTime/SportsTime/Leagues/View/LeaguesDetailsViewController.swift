@@ -34,11 +34,13 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     @IBAction func FavoriteBtn(_ sender: Any) {
         
         if isFavLeague {
+            isFavLeague = false
             let nonfilledHeartImage = UIImage(systemName: "heart")
             FavoriteOutlet.image = nonfilledHeartImage
             presenter.deleteFromFav(leagueIndex:leagueId)
             print("favorite removed!!!")
         }else{
+            isFavLeague = true
             print("league\(selctedLeague?.league_name)")
             presenter.insertLeagueToFavorite(league: selctedLeague!)
             let filledHeartImage = UIImage(systemName: "heart.fill")
