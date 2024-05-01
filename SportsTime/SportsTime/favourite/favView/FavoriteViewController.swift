@@ -13,14 +13,14 @@ class FavoriteViewController: UIViewController {
     @IBOutlet weak var favTableView: UITableView!
     
     var favLeagues :[League] = []
-   weak  var presenter = FavoritePresenter()
+     var presenter = FavoritePresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
 
-        presenter!.view = self
-        favLeagues = presenter!.getAllFav()
+        presenter.view = self
+        favLeagues = presenter.getAllFav()
         self.favTableView.reloadData()
         // Do any additional setup after loading the view.
     }
