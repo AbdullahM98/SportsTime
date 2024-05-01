@@ -25,8 +25,8 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     @IBOutlet weak var leaguesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = sportsType
-        
+        self.title = Constants.currSport
+
         activiyIndicator.center = self.view.center
         activiyIndicator.hidesWhenStopped = true
         activiyIndicator.style = .large
