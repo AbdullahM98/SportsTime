@@ -25,28 +25,6 @@ class FavoriteViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-  
-    func showAlert(title: String, message: String , onOkBtn:@escaping ()->Void ){
-     
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-   
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            onOkBtn()
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-    
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        
-       
-        self.present(alertController, animated: true, completion: nil)
-    }
-
 
 }
 

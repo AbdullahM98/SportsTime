@@ -26,7 +26,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = Constants.currSport
-
+        
         activiyIndicator.center = self.view.center
         activiyIndicator.hidesWhenStopped = true
         activiyIndicator.style = .large
@@ -45,6 +45,11 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         searchController.searchBar.barTintColor = UIColor.white
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
+        
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+                navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            }
     }
     override func viewWillAppear(_ animated: Bool) {
         

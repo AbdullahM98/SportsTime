@@ -8,13 +8,28 @@
 import UIKit
 
 class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+    @IBOutlet weak var themeSwitch: UISwitch!
     
     let names = ["Football","Tennis","Cricket","Basketball"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
+        
     }
+        @IBAction func themeAction(_ sender: Any) {
+            if #available(iOS 13.0, *){
+                let appDelegate = UIApplication.shared.windows.first
+                if (sender as AnyObject).isOn {
+                    appDelegate?.overrideUserInterfaceStyle = .dark
+
+                    return
+                }else {
+                    appDelegate?.overrideUserInterfaceStyle = .light
+                    return
+                }
+            }
+        }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,26 +82,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
         }
         self.navigationController?.pushViewController(legues, animated: true)
         } else {
-            showAlert(title: "No Internet Connection ", message: "Please check your Network ", index: indexPath)
+            showAlert(title: "No Internet Connection ", message: "Please check your Network ")
         }
 
     }
-    func showAlert(title: String, message: String, index:IndexPath) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            //self.navigationController?.popViewController(animated: true)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel Pressed")
-        }
-        
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-    
-        self.present(alertController, animated: true, completion: nil)
-    }
+   
         
     
 }

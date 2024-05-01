@@ -359,6 +359,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             KF.url(URL(string: teamsArray[indexPath.row].teamLogo ?? ""))
                 .placeholder(UIImage(named: "sports"))
                 .set(to: teamCell.teamImgView)
+            teamCell.teamName.text =  teamsArray[indexPath.row].teamName
         default :
             latesstCell
             

@@ -11,6 +11,7 @@ class TeasmCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var teamImgView: UIImageView!
     
+    @IBOutlet weak var teamName: UILabel!
     
     override func awakeFromNib() {
             super.awakeFromNib()
