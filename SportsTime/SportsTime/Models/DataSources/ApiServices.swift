@@ -40,7 +40,7 @@ class ApiServices  {
         }
     }
     
-    func getLeagueDetails(sport:String,met:String,leagueId:Int,from:String , to:String, compilation: @escaping (FixturesResponse?) -> Void) {
+    func getLeagueDetails(sport:String,met:String,leagueId:Int,from:String , to:String, compilation: @escaping (FixturesResponse?,Error?) -> Void) {
         let url = "\(Constants.Base_Url)\(sport)/?met=\(met)&APIkey=\(Constants.Api_key)&from=\(from)&to=\(to)&leagueId=\(leagueId)"
         
         AF.request(url, method: .get).responseJSON { response in
@@ -50,13 +50,13 @@ class ApiServices  {
                     if let data = response.data {
                         let result: FixturesResponse = try JSONDecoder().decode(FixturesResponse.self, from: data)
                        // print("today matches ",result.result!.count)
-                        compilation(result)
+                        compilation(result,nil)
                     }
                 } catch {
                     print(error.localizedDescription)
                 }
             case .failure(let error):
-                compilation(nil)
+                compilation(nil,error)
                 print(error.localizedDescription)
                 
             }

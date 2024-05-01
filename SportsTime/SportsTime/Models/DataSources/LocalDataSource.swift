@@ -21,7 +21,7 @@ class LocalDataSource {
     
     
      func insertLeagueToFavorite(league:League) {
-         let entity = NSEntityDescription.entity(forEntityName: "FavLeague", in: managedContext!)
+         let entity = NSEntityDescription.entity(forEntityName: entityName, in: managedContext!)
         let movie = NSManagedObject(entity: entity!, insertInto: managedContext)
         movie.setValue(league.league_key, forKey: "league_key")
         movie.setValue(league.league_name, forKey: "league_name")

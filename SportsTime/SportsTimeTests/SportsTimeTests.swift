@@ -37,6 +37,21 @@ final class SportsTimeTests: XCTestCase {
             if let error = error {
                 XCTFail()
             }else{
+                //XCTAssertEqual(result?.result?.count, 865)
+                XCTAssertNotNil(result?.result)
+                myExpection.fulfill() // done
+            }
+        })
+        waitForExpectations(timeout: 5)
+    }
+    func testGetLeagueDetails(){
+        
+        let myExpection = expectation(description: "wating for api alooo ")
+        
+        ApiServices.shared.getLeagueDetails(sport: "basketball", met: "Fixtures", leagueId: 766, from:"2024-04-28", to: "2024-05-30", compilation:{ result,error in
+            if let error = error {
+                XCTFail()
+            }else{
                // XCTAssertEqual(result?.data?.count, 24)
                 XCTAssertNotNil(result?.result)
                 myExpection.fulfill() // done
