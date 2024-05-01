@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class FavoriteViewController: UIViewController , UITableViewDelegate, UITableViewDataSource , FavouriteProtocol {
+class FavoriteViewController: UIViewController {
 
     @IBOutlet weak var favTableView: UITableView!
     
@@ -23,7 +23,36 @@ class FavoriteViewController: UIViewController , UITableViewDelegate, UITableVie
         self.favTableView.reloadData()
         // Do any additional setup after loading the view.
     }
+    
+    
+  
+func showAlert(title: String, message: String, index:IndexPath) {
+     
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+   
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.deleteFromFav(indexPath: index)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+    
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+       
+        self.present(alertController, animated: true, completion: nil)
+    }
 
+
+}
+
+
+extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
@@ -49,11 +78,7 @@ class FavoriteViewController: UIViewController , UITableViewDelegate, UITableVie
                     .set(to: cell.leagueImg)
         return cell
     }
-    
-    func updateFavView(leagues: [League]) {
-        self.favLeagues = leagues
-        self.favTableView.reloadData()
-    }
+ 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         170
@@ -64,48 +89,29 @@ class FavoriteViewController: UIViewController , UITableViewDelegate, UITableVie
         if editingStyle == .delete {
             
         showAlert(title: "Caution!", message: "Are you sure you want to delete ?",index: indexPath)
+            self.favTableView.reloadData()
         }
     }
     
     func deleteFromFav(indexPath:IndexPath){
-        favTableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-        favLeagues.remove(at: indexPath.row)
-        presenter.deleteFromFav(leagueIndex: indexPath.row)
-        self.favTableView.reloadData()
+        
+       favTableView.beginUpdates()
+       favLeagues.remove(at: indexPath.section)
+       favTableView.deleteSections(IndexSet(integer: indexPath.section), with:.fade)
+        presenter.deleteFromFav(leagueIndex: favLeagues[indexPath.row].league_key!)
+       favTableView.endUpdates()
+       
         
     }
-    
-    func showAlert(title: String, message: String, index:IndexPath) {
-        // Create the alert controller
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        // Create the actions
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.deleteFromFav(indexPath: index)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel Pressed")
-        }
-        
-        // Add the actions
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        
-        // Present the controller
-        // Assuming this function is called from a UIViewController
-        self.present(alertController, animated: true, completion: nil)
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
+
+
+extension FavoriteViewController : FavouriteProtocol {
+    
+    func updateFavView(leagues: [League]) {
+        self.favLeagues = leagues
+        self.favTableView.reloadData()
+    }
+}

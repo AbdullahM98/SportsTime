@@ -20,6 +20,7 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     let presenter = DetailsPresenter()
     var selctedLeague : League?
     var leagueId :Int!
+    var leagueIndex : Int!
     var sportsType : String!
     var leagueName : String!
     var UpComingArray : [Fixtures] = []
@@ -35,6 +36,8 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         if isFavLeague {
             let nonfilledHeartImage = UIImage(systemName: "heart")
             FavoriteOutlet.image = nonfilledHeartImage
+            presenter.deleteFromFav(leagueIndex:leagueId)
+            print("favorite removed!!!")
         }else{
             print("league\(selctedLeague?.league_name)")
             presenter.insertLeagueToFavorite(league: selctedLeague!)

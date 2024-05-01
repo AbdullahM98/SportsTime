@@ -16,6 +16,8 @@ class LeagueResponse : Decodable {
 }
 
 class League : Decodable {
+   
+    
     
     var league_key :Int?
     var league_name :String?

@@ -16,6 +16,6 @@ class FavoritePresenter {
     }
     
     func deleteFromFav(leagueIndex:Int){
-        LocalDataSource.shared.deleteMovie(leagueIndex: leagueIndex)
+        LocalDataSource.shared.deleteLeagueFromFav(leagueId: leagueIndex)
     }
 }

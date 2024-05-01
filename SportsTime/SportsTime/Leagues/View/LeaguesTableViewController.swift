@@ -33,11 +33,19 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         view.addSubview(activiyIndicator)
         activiyIndicator.startAnimating()
         
+        var searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
     }
     override func viewWillAppear(_ animated: Bool) {
         leaguesTableView.reloadData()
+        
 
     }
     func updateLeagues(res:LeagueResponse) {
@@ -53,11 +61,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     // MARK: - Table view data source
     
      func numberOfSections(in tableView: UITableView) -> Int {
-         if isSearching{
-             return searchingList.count
-         }else{
-             return leaguesArray.count
-         }
+         isSearching ? searchingList.count : leaguesArray.count
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +97,8 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
              DetailsViewController.leagueId = leagueId
              DetailsViewController.leagueName = leagueName
              DetailsViewController.sportsType = sportsType
+             DetailsViewController.leagueIndex = leaguesArray.firstIndex(where: {$0.league_key == selectedLeague.league_key})
+             print("sectionIndex is \(DetailsViewController.leagueIndex)")
              if(sportsType == "tennis"){
                  showAlert(title: "No Details For Tennis ", message: "please choosen another Sport ", index: indexPath)
              }else{
@@ -114,24 +120,23 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
    
 }
 
-extension LeaguesTableViewController : UISearchBarDelegate{
+extension LeaguesTableViewController : UISearchBarDelegate , UISearchResultsUpdating{
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
         isSearching = true
-        if !searchText.isEmpty {
-           
-            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
-        
-            for league in searchingList{
-                print("filtered name : \(league.league_name!)")
+            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+                
+        searchingList = leaguesArray.filter { league in
+                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
+                }
             }
-        }
-        
         self.leaguesTableView.reloadData()
-
-        
-    }
+        }
+    
+    
+    
     
     func showAlert(title: String, message: String, index:IndexPath) {
         // Create the alert controller
