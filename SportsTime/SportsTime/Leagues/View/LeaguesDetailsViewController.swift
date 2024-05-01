@@ -117,18 +117,16 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
         }
     }
     
-    func updateTeams(teams:TeamResponse){
-        if let res = teams.result{
-            self.teamsArray = res
+    func updateTeams(teams: TeamResponse) {
+        if let res = teams.result {
+            self.teamsArray = res.compactMap { $0 }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.collectionView.isHidden = false
                 self.fixtureActiviyIndicator.stopAnimating()
-
             }
         }
     }
-    
     // MARK: - layaout Sections
     
     func latestEvents() -> NSCollectionLayoutSection {

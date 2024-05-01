@@ -18,7 +18,7 @@ class LeaguePresenter {
     }
     
     func getLeaguesNetwork(){
-        ApiServices.shared.getLeaguesNetwork(sport: Constants.currSport, met: Constants.leagues){ [weak self] leagueReslut in
+        ApiServices.shared.getLeaguesNetwork(sport: Constants.currSport, met: Constants.leagues){ [weak self] leagueReslut,error in
             if let leagues = leagueReslut{
                 self?.leagueProtocl.updateLeagues(res: leagues)
                 

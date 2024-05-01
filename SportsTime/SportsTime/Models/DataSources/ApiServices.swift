@@ -14,7 +14,7 @@ class ApiServices  {
     private  init() {
     }
     
-    func getLeaguesNetwork(sport :String,met:String,compilation: @escaping (LeagueResponse?) -> Void) {
+    func getLeaguesNetwork(sport :String,met:String,compilation: @escaping (LeagueResponse?,Error?) -> Void) {
         let url = URL(string: "\(Constants.Base_Url)\(sport)/?met=\(met)&APIkey=\(Constants.Api_key)")
         
         AF.request(url!, method: .get).responseJSON { response in
@@ -27,13 +27,13 @@ class ApiServices  {
                         
                         print(result.result!.count)
                         //when i call the method this allow to receive and handle the response
-                        compilation(result)
+                        compilation(result,nil)
                     }
                 } catch {
                     print(error.localizedDescription)
                 }
             case .failure(let error):
-                compilation(nil)
+                compilation(nil,error)
                 print(error.localizedDescription)
                 
             }
