@@ -56,6 +56,60 @@ class MockNetworkService{
         "event_serve": "Player 1",
         "event_winner": "Player 2"
     ]
+    
+    let fakeTeam : [String:Any] =
+
+   [
+        
+            "team_key": 96,
+            "team_name": "Juventus",
+            "team_logo": "https://apiv2.allsportsapi.com/logo/96_juventus.jpg",
+            "players": [
+                
+                    "player_key": 41841276,
+                    "player_image": "https://apiv2.allsportsapi.com/logo/players/472_m-perin.jpg",
+                    "player_name": "M. Perin",
+                    "player_number": "36",
+                    "player_country": nil,
+                    "player_type": "Goalkeepers",
+                    "player_age": "31",
+                    "player_match_played": "2",
+                    "player_goals": "0",
+                    "player_yellow_cards": "0",
+                    "player_red_cards": "0",
+                    "player_injured": "No",
+                    "player_substitute_out": "0",
+                    "player_substitutes_on_bench": "26",
+                    "player_assists": "0",
+                    "player_birthdate": "1992-11-10",
+                    "player_is_captain": "0",
+                    "player_shots_total": "",
+                    "player_goals_conceded": "3",
+                    "player_fouls_committed": "",
+                    "player_tackles": "",
+                    "player_blocks": "",
+                    "player_crosses_total": "",
+                    "player_interceptions": "",
+                    "player_clearances": "",
+                    "player_dispossesed": "",
+                    "player_saves": "7",
+                    "player_inside_box_saves": "2",
+                    "player_duels_total": "2",
+                    "player_duels_won": "2",
+                    "player_dribble_attempts": "",
+                    "player_dribble_succ": "",
+                    "player_pen_comm": "",
+                    "player_pen_won": "",
+                    "player_pen_scored": "0",
+                    "player_pen_missed": "0",
+                    "player_passes": "74",
+                    "player_passes_accuracy": "50",
+                    "player_key_passes": "",
+                    "player_woordworks": "",
+                    "player_rating": "6.65"
+            ]]
+
+   
     enum ResponseWithError : Error {
         case responseError
     }
@@ -97,7 +151,38 @@ extension MockNetworkService{
             compilation(result, nil)
         }
     }
+    
+    func getTeamDetails(compilation:@escaping(TeamResponse?,Error?)->Void){
+        var result: TeamResponse = TeamResponse(success: 1, result: [])
+        do{
+            let teamData = try JSONSerialization.data(withJSONObject: fakeTeam)
+            result = try JSONDecoder().decode(TeamResponse.self, from: teamData)
+        }catch let error {
+            print(error)
+        }
         
+        if shouldReturnError {
+            compilation(nil,ResponseWithError.responseError)
+        }else{
+            compilation(result,nil)
+        }
+    }
+    
+    func getTeamsFromNetwork(compilation:@escaping(TeamResponse?,Error?)->Void){
+        var result: TeamResponse = TeamResponse(success: 1, result: [])
+        do{
+            let teamData = try JSONSerialization.data(withJSONObject: fakeTeam)
+            result = try JSONDecoder().decode(TeamResponse.self, from: teamData)
+        }catch let error {
+            print(error)
+        }
+        
+        if shouldReturnError {
+            compilation(nil,ResponseWithError.responseError)
+        }else{
+            compilation(result,nil)
+        }
+    }
 }
 
 

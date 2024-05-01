@@ -50,4 +50,27 @@ final class MockNetworkMangerTests: XCTestCase {
         }
     }
     
+    func testGetTeamNetwork(){
+        mockObject.getTeamDetails(compilation: {
+            result , error in
+            if let error = error {
+                XCTFail()
+            }else{
+                XCTAssertNotNil(result)
+            }
+        })
+    }
+    
+    
+    func testGetTeamDetailsNetwork(){
+        mockObject.getTeamDetails(compilation: {
+            result , error in
+            if let error = error {
+                XCTFail()
+            }else{
+                XCTAssertNotNil(result)
+            }
+        })
+    }
+    
 }

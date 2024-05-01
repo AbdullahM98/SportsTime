@@ -66,47 +66,47 @@ class ApiServices  {
     
     
     
-    func getTeams(sport:String,met:String,leagueId:String,compelition: @escaping (TeamResponse?)->Void){
+    func getTeams(sport:String,met:String,leagueId:String,compelition: @escaping (TeamResponse?,Error?)->Void){
         let url = URL(string: "\(Constants.Base_Url)\(sport)/?&met=\(met)&leagueId=\(leagueId)&APIkey=\(Constants.Api_key)")
-        AF.request(url! , method: .get).responseJSON{response in
+        AF.request(url! , method: .get).responseJSON{ response  in
             switch response.result{
             case .success:
                 do{
                     if let fetchedData =  response.data {
                         let result : TeamResponse = try JSONDecoder().decode(TeamResponse.self, from: fetchedData)
                         print(result.result?.count)
-                        compelition(result)
+                        compelition(result , nil)
                     }
                 } catch{
                     print(error)
                 }
             case .failure(let error ):
-                compelition(nil)
+                compelition(nil , error)
                 print(error)
             }
             
         }
     }
 
-    func getTeamDetails(sport:String,teamId:String,compelition:@escaping (TeamResponse?)->Void){
+    func getTeamDetails(sport:String,teamId:String,compelition:@escaping (TeamResponse? , Error?)->Void){
         let url = URL(string:"\(Constants.Base_Url)\(sport)/?&met=Teams&teamId=\(teamId)&APIkey=\(Constants.Api_key)")
         AF.request(url!, method: .get).responseJSON { response in
             switch response.result {
             case .success:
                 do {
-                    if let data = response.data { //data that came from the server
-                        //decode the json into LeagueResponse obj
+                    if let data = response.data { 
+                        
                         let result: TeamResponse = try JSONDecoder().decode(TeamResponse.self, from: data)
                         
                         print(result.result?.count)
-                        //when i call the method this allow to receive and handle the response
-                        compelition(result)
+                       
+                        compelition(result,nil)
                     }
                 } catch {
                     print(error.localizedDescription)
                 }
             case .failure(let error):
-                compelition(nil)
+                compelition(nil,error)
                 print(error.localizedDescription)
                 
             }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamsPresenter: NSObject {
+class TeamsPresenter: TeamsPresenterProtocol {
 
     var view : TeamsProtocol?
     
@@ -17,7 +17,7 @@ class TeamsPresenter: NSObject {
     }
     
     func getTeam(teamKey:String){
-        ApiServices.shared.getTeamDetails(sport: "football", teamId: teamKey, compelition: {[weak self] teamResponse in
+        ApiServices.shared.getTeamDetails(sport: "football", teamId: teamKey, compelition: {[weak self] teamResponse , error in
             guard let team = teamResponse else{return}
             self?.view!.updateView(team: team)
         })

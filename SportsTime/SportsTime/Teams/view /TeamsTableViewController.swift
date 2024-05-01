@@ -16,10 +16,13 @@ class TeamsTableViewController: UIViewController , TeamsProtocol {
     var team :Team?
     var players :[Player] = []
     
-    let presenter = TeamsPresenter()
+    var presenter : TeamsPresenterProtocol = TeamsPresenter()
     
     override func viewDidLoad() {
         
+      
+    }
+    override func viewWillAppear(_ animated: Bool) {
         presenter.attachView(view: self)
         presenter.getTeam(teamKey:Int((team?.teamKey)!).description)
         players = (team?.players)!

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritePresenter {
+class FavoritePresenter  : FavPresenterProtocol{
 
     var view : FavouriteProtocol?
     

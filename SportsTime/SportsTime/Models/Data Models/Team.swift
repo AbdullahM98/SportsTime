@@ -11,6 +11,8 @@ import UIKit
 struct TeamResponse: Decodable {
     let success: Int
     let result: [Team]?
+    
+
 }
 
 // MARK: - Result
@@ -21,6 +23,7 @@ struct Team: Decodable {
     let players: [Player]?
     let coaches: [Coach]?
 
+    
     enum CodingKeys: String, CodingKey {
         case teamKey = "team_key"
         case teamName = "team_name"

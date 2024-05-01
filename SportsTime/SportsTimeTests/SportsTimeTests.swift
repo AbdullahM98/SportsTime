@@ -44,6 +44,7 @@ final class SportsTimeTests: XCTestCase {
         })
         waitForExpectations(timeout: 5)
     }
+    
     func testGetLeagueDetails(){
         
         let myExpection = expectation(description: "wating for api alooo ")
@@ -60,4 +61,35 @@ final class SportsTimeTests: XCTestCase {
         waitForExpectations(timeout: 5)
     }
 
+    func testGetTeamDetailsFromNetwork(){
+         
+            let expectation = expectation(description: "Getting team Details from Api")
+            
+            ApiServices.shared.getTeamDetails(sport: Sports.football.rawValue, teamId: Int(96).description, compelition: {
+                result , error  in
+                if let error = error   {
+                    XCTFail()
+                } else {
+                XCTAssertNotNil(result?.result)
+                expectation.fulfill()
+                }
+            })
+            waitForExpectations(timeout: 5)
+        }
+    
+    func testGetTeamsFromNetwork(){
+         
+            let expectation = expectation(description: "Getting team  from Api")
+            
+        ApiServices.shared.getTeams(sport: Sports.football.rawValue, met:Constants.teams, leagueId: Int(175).description, compelition: {
+            result , error  in
+            if let error = error   {
+                XCTFail()
+            } else {
+            XCTAssertNotNil(result?.result)
+            expectation.fulfill()
+            }
+        })
+            waitForExpectations(timeout: 5)
+        }
 }
