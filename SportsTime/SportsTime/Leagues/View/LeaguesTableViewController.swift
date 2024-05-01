@@ -20,7 +20,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     var isSearching = false
     var activiyIndicator  = UIActivityIndicatorView()
     
-    @IBOutlet weak var searchBar: UISearchBar!
+
     
     @IBOutlet weak var leaguesTableView: UITableView!
     override func viewDidLoad() {
@@ -40,11 +40,14 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
+        searchController.searchBar.frame = CGRect(x: 0, y: -50, width: view.bounds.width, height: 40)
+        searchController.searchBar.backgroundColor = UIColor.purple
+        searchController.searchBar.barTintColor = UIColor.white
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         leaguesTableView.reloadData()
      
 
@@ -124,31 +127,31 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
 extension LeaguesTableViewController : UISearchBarDelegate , UISearchResultsUpdating{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        isSearching = true
-        print("didd")
-        if !searchText.isEmpty {
-            
-            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
-            print("search list is \(searchingList.count)")
-        }else{
-        searchingList = leaguesArray
-        }
+//        isSearching = true
+//        print("didd")
+//        if !searchText.isEmpty {
+//            
+//            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
+//            print("search list is \(searchingList.count)")
+//        }else{
+//        searchingList = leaguesArray
+//        }
         
     }
     
     func updateSearchResults(for searchController: UISearchController) {
       print("here")
-//        isSearching = true
-//            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-//                
-//        searchingList = leaguesArray.filter { league in
-//                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
-//               }
-//             
-//            }else{
-//                searchingList = leaguesArray
-//            }
-//        self.leaguesTableView.reloadData()
+        isSearching = true
+            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+                
+        searchingList = leaguesArray.filter { league in
+                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
+               }
+             
+            }else{
+                searchingList = leaguesArray
+            }
+        self.leaguesTableView.reloadData()
         }
     
     

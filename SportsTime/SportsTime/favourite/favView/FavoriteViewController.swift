@@ -17,7 +17,8 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.hidesBackButton = true
+
         presenter.view = self
         favLeagues = presenter.getAllFav()
         self.favTableView.reloadData()
@@ -26,13 +27,13 @@ class FavoriteViewController: UIViewController {
     
     
   
-func showAlert(title: String, message: String, index:IndexPath) {
+    func showAlert(title: String, message: String , onOkBtn:@escaping ()->Void ){
      
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
    
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.deleteFromFav(indexPath: index)
+            onOkBtn()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
@@ -85,10 +86,29 @@ extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var league = favLeagues[indexPath.section]
+        let DVC = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as! LeaguesDetailsViewController
+        DVC.selctedLeague = league
+        DVC.leagueId = league.league_key
+        DVC.leagueName = league.league_name
+        
+        if ReachabilityNetwork.shared.isNetworkAvailable{
+            navigationController?.pushViewController(DVC, animated: true)
+        }else{
+            showAlert(title: "No Interner Connection ", message: "please check your network connection "){
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-        showAlert(title: "Caution!", message: "Are you sure you want to delete ?",index: indexPath)
+            showAlert(title: "Caution!", message: "Are you sure you want to delete ?" ){ 
+                self.deleteFromFav(indexPath: indexPath)
+                
+            }
             self.favTableView.reloadData()
         }
     }
@@ -114,4 +134,6 @@ extension FavoriteViewController : FavouriteProtocol {
         self.favLeagues = leagues
         self.favTableView.reloadData()
     }
+    
+
 }
