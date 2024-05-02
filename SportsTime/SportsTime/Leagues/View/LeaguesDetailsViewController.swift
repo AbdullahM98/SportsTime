@@ -271,8 +271,9 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
         if indexPath.section == 2 {
-            var currTeam = teamsArray[indexPath.row]
+            let currTeam = teamsArray[indexPath.row]
             if let TeamsTableViewController = storyboard?.instantiateViewController(withIdentifier: "TeamsTableViewController") as? TeamsTableViewController {
                 TeamsTableViewController.team = currTeam
                 
@@ -403,7 +404,6 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
     }
     
     func checkPermission(notificationCenter : UNUserNotificationCenter){
-        
         
         notificationCenter.getNotificationSettings(completionHandler: {
             settings in

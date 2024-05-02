@@ -114,12 +114,20 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var leagueId = 0
+        var leagueName = ""
+        var selectedLeague = leaguesArray[indexPath.section]
         
-        let leagueId = leaguesArray[indexPath.section].league_key
-        let leagueName = leaguesArray[indexPath.section].league_name
-        let leagueeType = sportsType
-        let selectedLeague = leaguesArray[indexPath.section]
-        
+         if isSearching {
+             leagueId = searchingList[indexPath.section].league_key!
+             leagueName = searchingList[indexPath.section].league_name!
+             selectedLeague = searchingList[indexPath.section]
+         }else{
+             leagueId = leaguesArray[indexPath.section].league_key!
+             leagueName = leaguesArray[indexPath.section].league_name!
+             //let leagueeType = sportsType
+             selectedLeague = leaguesArray[indexPath.section]
+         }
          if let DetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesDetailsViewController") as? LeaguesDetailsViewController {
              DetailsViewController.selctedLeague = selectedLeague
              DetailsViewController.leagueId = leagueId
