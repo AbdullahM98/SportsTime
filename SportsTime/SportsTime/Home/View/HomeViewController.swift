@@ -21,11 +21,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate ,UICollect
             if #available(iOS 13.0, *){
                 let appDelegate = UIApplication.shared.windows.first
                 if (sender as AnyObject).isOn {
-                    appDelegate?.overrideUserInterfaceStyle = .dark
-
+                    appDelegate?.overrideUserInterfaceStyle = .light
                     return
                 }else {
-                    appDelegate?.overrideUserInterfaceStyle = .light
+                    appDelegate?.overrideUserInterfaceStyle = .dark
                     return
                 }
             }

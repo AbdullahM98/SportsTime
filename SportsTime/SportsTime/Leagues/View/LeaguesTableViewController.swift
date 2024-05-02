@@ -34,14 +34,14 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         view.addSubview(activiyIndicator)
         activiyIndicator.startAnimating()
         
-        var searchController = UISearchController(searchResultsController: nil)
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.searchBar.frame = CGRect(x: 0, y: -50, width: view.bounds.width, height: 40)
-        searchController.searchBar.backgroundColor = UIColor.purple
+        searchController.searchBar.backgroundColor = UIColor(named: "grayColor")
         searchController.searchBar.barTintColor = UIColor.white
         presenter.attachView(view: self)
         presenter.getLeaguesNetwork()
@@ -77,19 +77,38 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
         return 1
     }
     
+    
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaguesCell", for: indexPath)
-         let league =  leaguesArray[indexPath.section]
-        
-        cell.textLabel?.text = league.league_name
-        if let logoURLString = league.league_logo, let logoURL = URL(string: logoURLString) {
-            cell.imageView?.sd_setImage(with: logoURL, placeholderImage: UIImage(named: "uefa"))
-        }
-        cell.imageView!.layer.cornerRadius = cell.imageView!.frame.size.width / 2
-        cell.imageView!.clipsToBounds = true
-        
-        return cell
+         
+         cell.layer.cornerRadius = 25
+         cell.layer.cornerRadius = 25
+         cell.layer.borderWidth = 1
+         cell.layer.borderColor = UIColor.blue.cgColor
+         if isSearching {
+             let searchLeague =  searchingList[indexPath.section]
+             cell.textLabel?.text = searchLeague.league_name
+             if let logoURLString = searchLeague.league_logo, let logoURL = URL(string: logoURLString) {
+                 cell.imageView?.sd_setImage(with: logoURL, placeholderImage: UIImage(named: "uefa"))
+             }
+             cell.imageView!.layer.cornerRadius = cell.imageView!.frame.size.width / 2
+             cell.imageView!.clipsToBounds = true
+             return cell
+         }else{
+             let league =  leaguesArray[indexPath.section]
+             
+             cell.textLabel?.text = league.league_name
+             if let logoURLString = league.league_logo, let logoURL = URL(string: logoURLString) {
+                 cell.imageView?.sd_setImage(with: logoURL, placeholderImage: UIImage(named: "uefa"))
+             }
+             cell.imageView!.layer.cornerRadius = cell.imageView!.frame.size.width / 2
+             cell.imageView!.clipsToBounds = true
+             
+             return cell
+         }
     }
+
+    
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
     }
@@ -109,7 +128,7 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
            
             
              if(sportsType == "tennis"){
-                 showAlert(title: "No Details For Tennis ", message: "please choosen another Sport ", index: indexPath)
+                 showAlert(title: "No Details For Tennis ", message: "please choosen another Sport ")
              }else{
                  navigationController?.pushViewController(DetailsViewController, animated: true)
              }
@@ -132,56 +151,26 @@ class LeaguesTableViewController: UIViewController, UITableViewDelegate , UITabl
 extension LeaguesTableViewController : UISearchBarDelegate , UISearchResultsUpdating{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        isSearching = true
-//        print("didd")
-//        if !searchText.isEmpty {
-//            
-//            searchingList = leaguesArray.filter({($0.league_name?.prefix(searchText.count))! == searchText})
-//            print("search list is \(searchingList.count)")
-//        }else{
-//        searchingList = leaguesArray
-//        }
-        
+        isSearching = true
+        if !searchText.isEmpty {
+            searchingList = leaguesArray.filter { $0.league_name?.range(of: searchText, options: .caseInsensitive) != nil }
+        } else {
+            searchingList = leaguesArray
+        }
+        self.leaguesTableView.reloadData()
     }
+
     
     func updateSearchResults(for searchController: UISearchController) {
-      print("here")
         isSearching = true
-            if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-                
-        searchingList = leaguesArray.filter { league in
-                    return league.league_name!.localizedCaseInsensitiveContains(searchText)
-               }
-             
-            }else{
-                searchingList = leaguesArray
-            }
+        if let searchText = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+            searchingList = leaguesArray.filter { $0.league_name!.localizedCaseInsensitiveContains(searchText) }
+        } else {
+            searchingList = leaguesArray
+        }
         self.leaguesTableView.reloadData()
-        }
-    
-    
-    
-    
-    func showAlert(title: String, message: String, index:IndexPath) {
-       
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-      
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-           
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel Pressed")
-        }
-        
-   
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        
-       
-        self.present(alertController, animated: true, completion: nil)
     }
+   
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false

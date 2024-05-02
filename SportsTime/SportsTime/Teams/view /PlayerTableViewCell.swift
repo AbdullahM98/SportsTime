@@ -13,15 +13,17 @@ class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var playerRate: UILabel!
     @IBOutlet weak var playerImgView: UIImageView!
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+                super.awakeFromNib()
+                configureAppearance()
+            }
+            
+            func configureAppearance() {
+                layer.cornerRadius = 25
+                layer.masksToBounds = true
+                
+                layer.borderColor = UIColor.blue.cgColor
+                layer.borderWidth = 1.0
+            }
     
 
 }

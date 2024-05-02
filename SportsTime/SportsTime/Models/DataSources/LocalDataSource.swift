@@ -44,22 +44,22 @@ class LocalDataSource {
         var result:[League] = []
         let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
         do{
-            var fetchedList = try managedContext?.fetch(request)
+            let fetchedList = try managedContext?.fetch(request)
             guard let list = fetchedList else{return []}
            
             for leaguee in list{
-                var league = League()
+                let league = League()
                 league.league_key = leaguee.value(forKey: "league_key") as? Int
                 league.league_name = leaguee.value(forKey: "league_name") as? String
                 league.league_logo = leaguee.value(forKey: "league_logo") as? String
-                print("fetched \(league.league_name)")
+                print("fetched \(String(describing: league.league_name))")
                 result.append(league)
             }
         }catch let error as NSError{
             print(error)
         }
         for item in result{
-            print("fetched \(item.league_name)")
+            print("fetched \(String(describing: item.league_name))")
         }
         return result
       

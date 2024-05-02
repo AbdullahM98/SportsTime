@@ -17,8 +17,10 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nibCell = UINib(nibName: "FavTableViewCell", bundle: nil)
+        self.favTableView.register(nibCell, forCellReuseIdentifier: "FavCell")
         self.navigationItem.hidesBackButton = true
-
+        
         presenter.view = self
         favLeagues = presenter.getAllFav()
         self.favTableView.reloadData()
@@ -49,15 +51,20 @@ extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var league = favLeagues[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FavCell") as! FavoriteTableViewCell
-        cell.leagueName.text = league.league_name
+        let league = favLeagues[indexPath.section]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavCell") as! FavTableViewCell
+        cell.favLeagueName.text = league.league_name
         KF.url(URL(string: league.league_logo ?? ""))
-                    .placeholder(UIImage(named: "lg.png"))
-                    .set(to: cell.leagueImg)
+                    .placeholder(UIImage(named: "games"))
+                    .set(to: cell.favLeagueImage)
+        
+        
         return cell
     }
- 
+    
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         170
