@@ -66,13 +66,18 @@ class LocalDataSource {
     }
     
     func deleteLeagueFromFav(leagueId:Int){
-
+        var obj : NSManagedObject?
         do {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
             var  fetchedList = try managedContext?.fetch(fetchRequest)
-            var obj = fetchedList?.first(where: {
-                $0.value(forKey: "league_key") as! Int == leagueId
-            })
+           
+                 obj = fetchedList?.first(where: {
+                   
+                    $0.value(forKey: "league_key") as! Int == leagueId
+                    
+                })
+            
+            
             managedContext?.delete(obj!)
             try managedContext?.save()
         }catch let error as NSError{

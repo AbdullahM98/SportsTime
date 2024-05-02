@@ -10,11 +10,18 @@ import Kingfisher
 
 class TeamsTableViewController: UIViewController , TeamsProtocol {
     
-    @IBOutlet weak var teamDetailsName: UILabel!
+    
+
     @IBOutlet weak var teamDetailsImage: UIImageView!
+    
+    
+   
+    @IBAction func likedBtn(_ sender: Any) {
+    }
     
     var team :Team?
     var players :[Player] = []
+    var isFav = false
     
     var presenter : TeamsPresenterProtocol = TeamsPresenter()
     
@@ -23,6 +30,10 @@ class TeamsTableViewController: UIViewController , TeamsProtocol {
       
     }
     override func viewWillAppear(_ animated: Bool) {
+       initController()
+    }
+    
+    func initController(){
         presenter.attachView(view: self)
         presenter.getTeam(teamKey:Int((team?.teamKey)!).description)
         players = (team?.players)!
@@ -31,7 +42,6 @@ class TeamsTableViewController: UIViewController , TeamsProtocol {
         KF.url(URL(string: team?.teamLogo ?? ""))
             .placeholder(UIImage(named: "Barcelona"))
             .set(to:teamDetailsImage)
-        teamDetailsName.text = team?.teamName!
     }
 
     func updateView(team: TeamResponse) {

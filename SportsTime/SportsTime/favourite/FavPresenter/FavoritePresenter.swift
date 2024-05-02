@@ -6,16 +6,51 @@
 //
 
 import UIKit
-
-class FavoritePresenter  : FavPresenterProtocol{
-
+import Kingfisher
+class FavoritePresenter {
+    
+    var favLeagues :[League] = []
     var view : FavouriteProtocol?
     
+    
+    func checkNetworkReachability() -> Bool{
+        if ReachabilityNetwork.shared.isNetworkAvailable{
+            return true
+        }else{
+         return false
+        }
+    }
+    
+}
+
+
+
+
+
+extension FavoritePresenter  : FavPresenterProtocol{
+    
+   
+
+    func attachView(view: FavouriteProtocol) {
+        self.view = view
+    }
+    
     func getAllFav()->[League]{
-       return LocalDataSource.shared.getAllLeagues()
+        let leagues = LocalDataSource.shared.getAllLeagues()
+        favLeagues = leagues
+//        updateList()
+//        view?.reloadTableView()
+        return leagues
+       
     }
     
     func deleteFromFav(leagueIndex:Int){
         LocalDataSource.shared.deleteLeagueFromFav(leagueId: leagueIndex)
     }
 }
+
+
+
+
+
+
