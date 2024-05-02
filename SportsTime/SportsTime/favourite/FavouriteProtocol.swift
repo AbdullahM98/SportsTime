@@ -7,10 +7,8 @@
 
 import Foundation
 import UIKit
+
 protocol FavouriteProtocol {
    
-    
-
-    
-    func reloadTableView()
+    func updateFavView(leagues: [League])
 }

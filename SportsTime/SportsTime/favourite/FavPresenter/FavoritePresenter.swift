@@ -24,9 +24,6 @@ class FavoritePresenter {
 }
 
 
-
-
-
 extension FavoritePresenter  : FavPresenterProtocol{
     
    
