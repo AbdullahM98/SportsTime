@@ -65,7 +65,7 @@ extension TeamsTableViewController : UITableViewDelegate , UITableViewDataSource
         let player = players[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TeamsCell") as! PlayerTableViewCell
         cell.playerName.text = player.playerName
-        cell.playerRate.text = player.playerRating
+        cell.playerRate.text = player.playerType
         
       
         KF.url(URL(string: player.playerImage ?? ""))
