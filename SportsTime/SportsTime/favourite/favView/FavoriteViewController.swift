@@ -102,11 +102,11 @@ extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func deleteFromFav(indexPath:IndexPath){
-        
+        presenter.deleteFromFav(leagueIndex: favLeagues[indexPath.section].league_key!)
        favTableView.beginUpdates()
        favLeagues.remove(at: indexPath.section)
        favTableView.deleteSections(IndexSet(integer: indexPath.section), with:.fade)
-        presenter.deleteFromFav(leagueIndex: favLeagues[indexPath.row].league_key!)
+    
        favTableView.endUpdates()
        
         
