@@ -69,7 +69,7 @@ class LocalDataSource {
         var obj : NSManagedObject?
         do {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-            var  fetchedList = try managedContext?.fetch(fetchRequest)
+            var fetchedList = try managedContext?.fetch(fetchRequest)
            
                  obj = fetchedList?.first(where: {
                    

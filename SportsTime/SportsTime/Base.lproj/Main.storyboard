@@ -163,6 +163,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-qU-IQb">
+                                <rect key="frame" x="65" y="316" width="263" height="348"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Vj-QYd">
                                 <rect key="frame" x="0.0" y="141" width="393" height="698"/>
                                 <color key="backgroundColor" name="grayColor"/>
@@ -230,6 +234,7 @@
                     <tabBarItem key="tabBarItem" title="Favorite" image="heart.circle.fill" catalog="system" id="DoW-uw-3EE"/>
                     <navigationItem key="navigationItem" id="3u3-Sc-NUq"/>
                     <connections>
+                        <outlet property="emptyFav" destination="xpv-qU-IQb" id="KIP-1H-oCu"/>
                         <outlet property="favTableView" destination="9Og-Vj-QYd" id="qP2-Rr-Sfb"/>
                     </connections>
                 </viewController>
@@ -796,6 +801,7 @@
         <image name="banzema" width="312" height="369"/>
         <image name="games" width="512" height="512"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart" width="512" height="512"/>
         <image name="heart.circle.fill" catalog="system" width="32" height="32"/>
         <image name="right" width="512" height="512"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
