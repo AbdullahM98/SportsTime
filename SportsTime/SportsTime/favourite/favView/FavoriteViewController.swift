@@ -13,7 +13,7 @@ class FavoriteViewController: UIViewController {
     @IBOutlet weak var favTableView: UITableView!
     
     var favLeagues :[League] = []
-     var presenter = FavoritePresenter()
+    var presenter = FavoritePresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,10 @@ class FavoriteViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.hidesBackButton = true
 
+    }
 }
 
 
@@ -67,7 +70,7 @@ extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        170
+        100
     }
     
     
