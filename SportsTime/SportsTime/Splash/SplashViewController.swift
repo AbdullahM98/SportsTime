@@ -23,7 +23,7 @@ class SplashViewController : UIViewController {
         animationView!.play()
 
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
             self.performSegue(withIdentifier: "goToHome", sender: nil)
         }
     }
