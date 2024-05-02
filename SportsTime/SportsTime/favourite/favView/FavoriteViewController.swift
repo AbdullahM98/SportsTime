@@ -12,6 +12,7 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var favTableView: UITableView!
     
+    @IBOutlet weak var emptyFav: UIImageView!
     var favLeagues :[League] = []
     var presenter = FavoritePresenter()
     
@@ -23,13 +24,18 @@ class FavoriteViewController: UIViewController {
         
         presenter.view = self
         favLeagues = presenter.getAllFav()
+        isFavEmpty()
         self.favTableView.reloadData()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = true
-
+        favLeagues = presenter.getAllFav()
+        isFavEmpty()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        isFavEmpty()
     }
 }
 
@@ -102,14 +108,27 @@ extension FavoriteViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func deleteFromFav(indexPath:IndexPath){
-        presenter.deleteFromFav(leagueIndex: favLeagues[indexPath.section].league_key!)
+       presenter.deleteFromFav(leagueIndex: favLeagues[indexPath.section].league_key!)
        favTableView.beginUpdates()
        favLeagues.remove(at: indexPath.section)
        favTableView.deleteSections(IndexSet(integer: indexPath.section), with:.fade)
-    
        favTableView.endUpdates()
-       
+       isFavEmpty()
         
+    }
+    
+    func isFavEmpty(){
+        if favLeagues.isEmpty {
+            self.favTableView.isHidden = true
+            self.emptyFav.isHidden = false
+            self.favTableView.reloadData()
+
+            
+        }else{
+            self.favTableView.isHidden = false
+            self.emptyFav.isHidden = true
+            self.favTableView.reloadData()
+        }
     }
 }
 
