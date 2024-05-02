@@ -30,11 +30,11 @@ class ApiServices  {
                         compilation(result,nil)
                     }
                 } catch {
-                    print(error.localizedDescription)
+                    print(error)
                 }
             case .failure(let error):
                 compilation(nil,error)
-                print(error.localizedDescription)
+                print(error)
                 
             }
         }

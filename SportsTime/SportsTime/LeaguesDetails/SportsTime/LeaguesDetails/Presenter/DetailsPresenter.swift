@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UserNotifications
 class DetailsPresenter{
     var detailsProtocol :LeagueDetailsProtocol!
+    var todayMatch = ""
     
     var favList : [League]?
     
@@ -27,6 +29,10 @@ class DetailsPresenter{
             if let res = result{
                 self!.detailsProtocol.updateUpComing(fixtures: res)
                 print("getUpComingEvents",result?.result?.count as Any)
+                let homeTeam = res.result?[0].event_home_team ?? "Unknown Home Team"
+                let awayTeam = res.result?[0].event_away_team ?? "Unknown Away Team"
+                print("\(homeTeam) VS \(awayTeam)")
+                self?.todayMatch = "\(homeTeam)   VS   \(awayTeam)"
             }
         })
     }
@@ -74,5 +80,49 @@ class DetailsPresenter{
         }
         return false
     }
+    
+}
+
+extension DetailsPresenter{
+    
+    
+ 
+    
+    
+    
+    func fireNotification(identifier:String,calendar: Calendar, title:String , body :String, notificationCenter : UNUserNotificationCenter){
+       
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = todayMatch
+        content.sound = .default
+        
+        
+        
+        var dateComponents = DateComponents(calendar: calendar , timeZone: TimeZone.current)
+        
+       
+        
+        var trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request){
+            error in
+            if let error = error {
+                print("Error scheduling notf")
+            }else{
+                print("Added succefully")
+            }
+        }
+
+        
+    }
+    func getCurrentMillis()->Int64{
+        return  Int64(NSDate().timeIntervalSince1970 * 1000)
+    }
+
+    
     
 }

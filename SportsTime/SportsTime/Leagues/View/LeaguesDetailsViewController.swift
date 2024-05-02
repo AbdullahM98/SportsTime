@@ -12,10 +12,13 @@ protocol LeagueDetailsProtocol{
     func updateUpComing(fixtures:FixturesResponse)
     func updateLatest(fixtures:FixturesResponse)
     func updateTeams(teams:TeamResponse)
+    func didAllowNotificationPermission()
 }
 
 
 class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProtocol{
+    
+    let notificationCenter = UNUserNotificationCenter.current()
     
     let presenter = DetailsPresenter()
     var selctedLeague : League?
@@ -45,12 +48,20 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             presenter.insertLeagueToFavorite(league: selctedLeague!)
             let filledHeartImage = UIImage(systemName: "heart.fill")
             FavoriteOutlet.image = filledHeartImage
-            
+            checkPermission(notificationCenter: notificationCenter)
+
             
             print("favorite added!!!")
         }
         
     }
+    
+    func didAllowNotificationPermission() {
+        presenter.fireNotification(identifier: "LeaguesNotification", calendar: Calendar.current, title: "Today's Match", body: "AY KLAM ", notificationCenter: notificationCenter)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = leagueName
@@ -389,5 +400,30 @@ class LeaguesDetailsViewController: UICollectionViewController,LeagueDetailsProt
             }
         }
         return sectionName
+    }
+    
+    func checkPermission(notificationCenter : UNUserNotificationCenter){
+        
+        
+        notificationCenter.getNotificationSettings(completionHandler: {
+            settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                print("notdetermind")
+                notificationCenter.requestAuthorization(options: [.alert,.sound]){
+                    didAllow , error in
+                    if didAllow{
+                        self.didAllowNotificationPermission()
+                    }
+                }
+            case .denied:
+                return
+            case .authorized:
+                print("auth")
+                self.didAllowNotificationPermission()
+            default:
+                return
+            }
+        })
     }
 }

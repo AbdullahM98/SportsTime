@@ -9,7 +9,7 @@ import Foundation
 
 
 class DateFormat {
-    
+   
     static func getDate() -> (today: String, yesterday: String, tomorrow: String) {
         let date = Date()
         let calendar = Calendar.current

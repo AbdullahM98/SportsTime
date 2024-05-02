@@ -31,6 +31,7 @@
 		767896B92BE302F3009C3C3C /* FavPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767896B82BE302F3009C3C3C /* FavPresenterProtocol.swift */; };
 		767896BB2BE3033A009C3C3C /* MockFavPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767896BA2BE3033A009C3C3C /* MockFavPresenter.swift */; };
 		767896BD2BE3051C009C3C3C /* FavViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767896BC2BE3051C009C3C3C /* FavViewControllerTest.swift */; };
+		768BBB432BE3D9460022679F /* NotificationManager .swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BBB422BE3D9460022679F /* NotificationManager .swift */; };
 		76B3FB712BDAA0EA002B4E1C /* TeamsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B3FB702BDAA0EA002B4E1C /* TeamsPresenter.swift */; };
 		76B3FB732BDAA131002B4E1C /* TeamsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B3FB722BDAA131002B4E1C /* TeamsTableViewController.swift */; };
 		76C2C3F42BDC98A300E57498 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2C3F32BDC98A300E57498 /* PlayerTableViewCell.swift */; };
@@ -112,6 +113,7 @@
 		767896B82BE302F3009C3C3C /* FavPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavPresenterProtocol.swift; path = SportsTime/favourite/favPresenter/FavPresenterProtocol.swift; sourceTree = SOURCE_ROOT; };
 		767896BA2BE3033A009C3C3C /* MockFavPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavPresenter.swift; sourceTree = "<group>"; };
 		767896BC2BE3051C009C3C3C /* FavViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewControllerTest.swift; sourceTree = "<group>"; };
+		768BBB422BE3D9460022679F /* NotificationManager .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationManager .swift"; sourceTree = "<group>"; };
 		76B3FB702BDAA0EA002B4E1C /* TeamsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsPresenter.swift; sourceTree = "<group>"; };
 		76B3FB722BDAA131002B4E1C /* TeamsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableViewController.swift; sourceTree = "<group>"; };
 		76C2C3F32BDC98A300E57498 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				7FCA81B52BDB9CDE0045DF6B /* Constants.swift */,
 				7F83796F2BE156E400BE0857 /* ReachabilityNetwork.swift */,
 				7F837A1D2BE2E77E00BE0857 /* Alert.swift */,
+				768BBB422BE3D9460022679F /* NotificationManager .swift */,
 			);
 			path = "Utils ";
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				7F83796E2BE119D500BE0857 /* FavoritePresenter.swift in Sources */,
 				76B3FB732BDAA131002B4E1C /* TeamsTableViewController.swift in Sources */,
 				76D21BFB2BDDC11700569B5D /* LocalDataSource.swift in Sources */,
+				768BBB432BE3D9460022679F /* NotificationManager .swift in Sources */,
 				7F8379702BE156E400BE0857 /* ReachabilityNetwork.swift in Sources */,
 				7F7752562BDAAB800031831B /* LeaguesDetailsViewController.swift in Sources */,
 				7FCA81B62BDB9CDE0045DF6B /* Constants.swift in Sources */,
