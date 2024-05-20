@@ -6,6 +6,7 @@
 ## - Swift
 ## - MVP architectural pattern
 ## - Coredata
+## - Local Notification
 ## - CocoaPods (Kingfisher - Reachability - Alamofire )
 ## - Unit testing
 
