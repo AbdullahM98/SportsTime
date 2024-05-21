@@ -2,7 +2,7 @@
 ## It’s a native mobile application that helps the user to get all football, basketball, cricket, tennis leagues and follow their upcoming, latest results, standings and teams for each league. The user can also Search for League and add league to favorites.
 
 
-# Built using / Technologies used:
+# Technologies used:
 ## - Swift
 ## - MVP architectural pattern
 ## - Coredata
